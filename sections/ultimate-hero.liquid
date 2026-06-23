@@ -1,0 +1,226 @@
+<div class="ultimate-hero">
+  <!-- Premium 3D Background behind text -->
+  <div class="hero-3d-bg" id="hero-left-3d">
+    <!-- Three.js will render here -->
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">{{ section.settings.title | newline_to_br }}</h1>
+    <p class="hero-subtitle">{{ section.settings.subtitle | newline_to_br }}</p>
+    <div class="hero-actions">
+      {% if section.settings.cta_text != blank %}
+        <a href="{{ section.settings.cta_link | default: '#' }}" class="hero-cta magnetic-btn">{{ section.settings.cta_text }}</a>
+      {% endif %}
+      {% if section.settings.show_play_button %}
+        <button class="hero-play-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg> {{ section.settings.play_button_text }}</button>
+      {% endif %}
+    </div>
+  </div>
+  <div class="hero-image-container" id="hero-tilt-container">
+    <div class="hero-image-inner" id="hero-tilt-inner">
+      {% if section.settings.hero_image %}
+        {{ section.settings.hero_image | image_url: width: 1500 | image_tag: class: 'hero-image' }}
+      {% else %}
+        <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Luxury Perfume" class="hero-image">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.ultimate-hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+}
+
+.hero-3d-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Cover entire width */
+  height: 100vh;
+  z-index: 2; /* Behind the text and bottle */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-3d-bg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0.9;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 10%; /* Move to the left side */
+  transform: translateY(-50%); /* Only translate Y to keep it vertically centered */
+  text-align: left;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through to 3D canvas */
+  max-width: 600px; /* Prevent text from spanning too wide */
+  background: transparent; /* Transparent background for clean luxury look */
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  transform-style: preserve-3d;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  color: var(--color-champagne);
+  text-align: left;
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  color: rgba(239, 232, 223, 0.7);
+  text-align: left;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero-cta {
+  pointer-events: auto;
+  background: transparent;
+  border: 1px solid var(--color-champagne);
+  color: var(--color-champagne);
+  padding: 1rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hero-play-btn {
+  pointer-events: auto;
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+}
+.hero-play-btn svg {
+  color: var(--color-ivory);
+}
+
+.hero-cta:hover {
+  background: var(--color-champagne);
+  color: var(--color-luxury-black);
+}
+
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3; /* Position in front of the 3D particle background */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align the bottle to the right side */
+  perspective: 1000px; 
+}
+
+.hero-image-inner {
+  width: 60%; /* Take up the right portion of the screen */
+  height: 90%; /* Leave a little breathing room */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-image {
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; /* Ensures the ENTIRE bottle is visible */
+  opacity: 1;
+  transform: scale(1.05) translateZ(50px);
+  /* This drop-shadow will create a realistic 3D shadow ONLY on the bottle once a transparent PNG is used */
+  filter: drop-shadow(-10px 20px 30px rgba(0,0,0,0.8));
+}
+</style>
+
+{% schema %}
+{
+  "name": "Ultimate Hero",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "ELEVATE YOUR\nESSENCE"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Crafted with rare ingredients,\ndesigned for timeless luxury."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Product Image (Bottle)"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "DISCOVER COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_play_button",
+      "label": "Show Play Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "play_button_text",
+      "label": "Play Button Text",
+      "default": "PLAY INTRO"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ultimate Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,304 @@
+<div class="rise-cart-page">
+  <div class="cart-header">
+    <h1>YOUR CART</h1>
+    <a href="/collections/all" class="continue-shopping">Continue Shopping</a>
+  </div>
+
+  <form action="{{ routes.cart_url }}" method="post" id="cart-form">
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-layout">
+        <div class="cart-items">
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th colspan="2">PRODUCT</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for item in cart.items -%}
+                <tr>
+                  <td class="cart-item-image">
+                    <a href="{{ item.url }}">
+                      <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                    </a>
+                  </td>
+                  <td class="cart-item-details">
+                    <h3><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+                    {%- unless item.variant.title contains 'Default' -%}
+                      <p class="variant-title">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                    <p class="item-price">{{ item.price | money }}</p>
+                    <a href="{{ item.url_to_remove }}" class="remove-btn">Remove</a>
+                  </td>
+                  <td class="cart-item-quantity">
+                    <div class="quantity-selector">
+                      <button type="button" class="qty-btn" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.dispatchEvent(new Event('change'))">-</button>
+                      <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" onchange="document.getElementById('cart-form').submit();">
+                      <button type="button" class="qty-btn" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.dispatchEvent(new Event('change'))">+</button>
+                    </div>
+                  </td>
+                  <td class="cart-item-total">
+                    {{ item.final_line_price | money }}
+                  </td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cart-summary">
+          <h3>ORDER SUMMARY</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="taxes-note">Taxes and shipping calculated at checkout.</p>
+          <button type="submit" name="checkout" class="checkout-btn">CHECKOUT</button>
+        </div>
+      </div>
+    {%- else -%}
+      <div class="empty-cart">
+        <h2>Your cart is currently empty.</h2>
+        <a href="/collections/all" class="checkout-btn" style="display:inline-block; margin-top:2rem;">DISCOVER OUR COLLECTION</a>
+      </div>
+    {%- endif -%}
+  </form>
+</div>
+
+<style>
+.rise-cart-page {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) + 60px) var(--spacing-md) var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.cart-header h1 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.continue-shopping {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(239, 232, 223, 0.7);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.continue-shopping:hover {
+  color: var(--color-champagne);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th {
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(239, 232, 223, 0.5);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  text-transform: uppercase;
+}
+
+.cart-table td {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.cart-item-image {
+  width: 120px;
+  background: #0a0a0a;
+  padding: 1rem;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.cart-item-details {
+  padding-left: 2rem !important;
+}
+
+.cart-item-details h3 a {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--color-ivory);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.variant-title {
+  font-size: 0.75rem;
+  color: rgba(239, 232, 223, 0.6);
+  margin-top: 0.5rem;
+}
+
+.item-price {
+  font-family: var(--font-sans);
+  color: var(--color-champagne);
+  margin-top: 0.5rem;
+}
+
+.remove-btn {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(239, 232, 223, 0.5);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  border-bottom: 1px solid rgba(239, 232, 223, 0.5);
+}
+
+.quantity-selector {
+  display: flex;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  width: fit-content;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.quantity-selector input {
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  width: 40px;
+  text-align: center;
+  font-family: var(--font-sans);
+  -moz-appearance: textfield;
+}
+
+.quantity-selector input::-webkit-outer-spin-button,
+.quantity-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cart-item-total {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-ivory);
+}
+
+.cart-summary {
+  background: #0a0a0a;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  padding: 2rem;
+  height: fit-content;
+}
+
+.cart-summary h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  padding-bottom: 1rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-ivory);
+  margin-bottom: 1rem;
+}
+
+.taxes-note {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(239, 232, 223, 0.5);
+  margin-bottom: 2rem;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: var(--color-champagne);
+  border: none;
+  color: var(--color-luxury-black);
+  padding: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background: var(--color-soft-gold);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.empty-cart h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: rgba(239, 232, 223, 0.7);
+}
+
+@media screen and (max-width: 1024px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Cart",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Cart"
+    }
+  ]
+}
+{% endschema %}

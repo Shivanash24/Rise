@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "product-grid": {
+      "type": "rise-collection-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "product-grid"
+  ]
+}

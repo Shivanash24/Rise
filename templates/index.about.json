@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "rise-about",
+      "blocks": {
+        "stat_1": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10+",
+            "stat_label": "Years of Mastery"
+          }
+        },
+        "stat_2": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "50+",
+            "stat_label": "Bespoke Scents"
+          }
+        },
+        "stat_3": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "100k+",
+            "stat_label": "Customers Worldwide"
+          }
+        }
+      },
+      "block_order": [
+        "stat_1",
+        "stat_2",
+        "stat_3"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

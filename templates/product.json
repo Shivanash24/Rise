@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "rise-product",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

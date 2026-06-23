@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "rise-cart",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

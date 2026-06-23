@@ -1,0 +1,135 @@
+<div class="features-trust-bar">
+  <div class="features-container">
+    {% for block in section.blocks %}
+    <div class="feature-item" {{ block.shopify_attributes }}>
+      <div class="feature-icon">
+        {{ block.settings.icon_svg }}
+      </div>
+      <div class="feature-text">
+        <h4>{{ block.settings.title }}</h4>
+        <p>{{ block.settings.subtitle }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.features-trust-bar {
+  background: var(--color-luxury-black);
+  padding: var(--spacing-lg) 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.features-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.feature-icon {
+  color: var(--color-soft-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-text h4 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+  margin: 0 0 0.25rem 0;
+}
+
+.feature-text p {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(239, 232, 223, 0.5);
+  margin: 0;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Features Trust Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "PREMIUM INGREDIENTS"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "SOURCED GLOBALLY"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features Trust Bar",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "PREMIUM INGREDIENTS",
+            "subtitle": "SOURCED GLOBALLY",
+            "icon_svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"></polygon></svg>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "LONG LASTING",
+            "subtitle": "PERFORMANCE",
+            "icon_svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12 6 12 12 16 14\"></polyline></svg>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "CRAFTED BY EXPERTS",
+            "subtitle": "MASTER PERFUMERS",
+            "icon_svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path><polyline points=\"22 4 12 14.01 9 11.01\"></polyline></svg>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "LUXURY PACKAGING",
+            "subtitle": "SUSTAINABLE & ELEGANT",
+            "icon_svg": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"14\" rx=\"2\" ry=\"2\"></rect><path d=\"M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"></path></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

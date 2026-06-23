@@ -1,0 +1,610 @@
+<div class="signature-collections-section">
+  <!-- Cinematic Background Elements -->
+  <div class="luxury-bg-overlay"></div>
+  <div class="luxury-particles" id="collections-particles"></div>
+
+  <div class="signature-collections-container">
+    <!-- Redesigned Section Header -->
+    <div class="collections-header-wrapper scroll-reveal">
+      <h3 class="collections-subtitle">{{ section.settings.subtitle }}</h3>
+      <h2 class="collections-title">{{ section.settings.title }}</h2>
+      <div class="collections-divider">
+        <span class="divider-gold-line"></span>
+        <span class="divider-diamond"></span>
+        <span class="divider-gold-line"></span>
+      </div>
+      <p class="collections-desc">
+        {{ section.settings.description }}
+      </p>
+    </div>
+    
+    <!-- Redesigned Collections Grid -->
+    <div class="collections-grid-wrapper">
+      {% for block in section.blocks %}
+        {% if block.type == 'card' %}
+      <div class="collection-card-luxury scroll-reveal" data-tilt {{ block.shopify_attributes }}>
+        <div class="card-3d-viewport">
+          {% assign fallback_img = 'noir_eclipse_campaign.png' %}
+          {% if block.settings.scent == 'gold' %}{% assign fallback_img = 'golden_oud_campaign.png' %}{% endif %}
+          {% if block.settings.scent == 'amber' %}{% assign fallback_img = 'velvet_amber_campaign.png' %}{% endif %}
+          {% if block.settings.scent == 'rose' %}{% assign fallback_img = 'midnight_rose_campaign.png' %}{% endif %}
+          
+          <div class="card-canvas-container" data-image-url="{% if block.settings.image %}{{ block.settings.image | image_url }}{% else %}{{ fallback_img | asset_url }}{% endif %}" data-scent="{{ block.settings.scent | default: 'gold' }}">
+            {% if block.settings.image %}
+              {{ block.settings.image | image_url: width: 800 | image_tag: class: 'card-campaign-fallback-img', loading: 'lazy' }}
+            {% else %}
+              <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.title }}" class="card-campaign-fallback-img" loading="lazy">
+            {% endif %}
+          </div>
+          <div class="card-glow-overlay"></div>
+        </div>
+        <div class="card-info-luxury">
+          <span class="perfume-type">{{ block.settings.type_text }}</span>
+          <h4 class="perfume-name">{{ block.settings.title }}</h4>
+          <p class="perfume-desc">{{ block.settings.description }}</p>
+          <div class="card-footer-luxe">
+            <span class="perfume-price">{{ block.settings.price_text }}</span>
+            <a href="{{ block.settings.link | default: '#' }}" class="explore-btn-luxe">
+              <span class="btn-text">{{ block.settings.btn_text }}</span>
+              <span class="btn-line"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Bottom Luxury Trust Bar -->
+    <div class="collections-trust-bar scroll-reveal">
+      {% for block in section.blocks %}
+        {% if block.type == 'trust_badge' %}
+      <div class="trust-item-luxe" {{ block.shopify_attributes }}>
+        <div class="trust-icon-wrapper">
+          {{ block.settings.icon_svg }}
+        </div>
+        <h5 class="trust-item-title">{{ block.settings.title }}</h5>
+        <p class="trust-item-text">{{ block.settings.text }}</p>
+      </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.signature-collections-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #151515 0%, #050505 80%);
+  padding: 8rem var(--spacing-md) 6rem var(--spacing-md);
+  overflow: hidden;
+  color: var(--color-ivory);
+}
+
+.luxury-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("{{ 'sparkle.gif' | asset_url }}") repeat;
+  opacity: 0.02;
+  pointer-events: none;
+}
+
+.luxury-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.signature-collections-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Redesigned Section Header */
+.collections-header-wrapper {
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collections-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  color: var(--color-champagne);
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.collections-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--color-ivory);
+  margin-bottom: 1.5rem;
+}
+
+/* Luxury Divider */
+.collections-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.divider-gold-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(212,175,55,0.8) 50%, rgba(212,175,55,0) 100%);
+}
+
+.divider-diamond {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--color-champagne);
+  transform: rotate(45deg);
+  background: transparent;
+}
+
+.collections-desc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(239, 232, 223, 0.7);
+  letter-spacing: 0.05em;
+}
+
+/* Redesigned Collections Grid */
+.collections-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 8rem;
+  align-items: stretch;
+}
+
+@media screen and (max-width: 1200px) {
+  .collections-grid-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .collections-grid-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Luxury Card Styling */
+.collection-card-luxury {
+  position: relative;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.collection-card-luxury:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.05);
+}
+
+.card-3d-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #000;
+  transform: translateZ(20px);
+}
+
+.card-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.card-canvas-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2;
+}
+
+.card-campaign-fallback-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-glow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 175, 55, 0.12) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.collection-card-luxury:hover .card-glow-overlay {
+  opacity: 1;
+}
+
+/* Card Info Styling */
+.card-info-luxury {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  transform: translateZ(10px);
+}
+
+.perfume-type {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--color-champagne);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.perfume-name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+  margin-bottom: 1rem;
+}
+
+.perfume-desc {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(239, 232, 223, 0.6);
+  margin-bottom: 2rem;
+  flex-grow: 1;
+  letter-spacing: 0.02em;
+  min-height: 85px;
+}
+
+.card-footer-luxe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.perfume-price {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-ivory);
+}
+
+.explore-btn-luxe {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.btn-text {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-champagne);
+  transition: color 0.3s ease;
+}
+
+.btn-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-champagne);
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.explore-btn-luxe:hover .btn-text {
+  color: var(--color-ivory);
+}
+
+.explore-btn-luxe:hover .btn-line {
+  transform: scaleX(1);
+}
+
+/* Bottom Luxury Trust Bar */
+.collections-trust-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+  padding-top: 5rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .collections-trust-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .collections-trust-bar {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.trust-item-luxe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.trust-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(10, 10, 10, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-champagne);
+  margin-bottom: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.trust-icon-svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.trust-item-luxe:hover .trust-icon-wrapper {
+  color: var(--color-luxury-black);
+  background: var(--color-champagne);
+  border-color: var(--color-champagne);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.trust-item-luxe:hover .trust-icon-svg {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.trust-item-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--color-ivory);
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.trust-item-text {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: rgba(239, 232, 223, 0.5);
+  line-height: 1.4;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Signature Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "CRAFTED TO PERFECTION"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "OUR SIGNATURE COLLECTIONS"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Each fragrance is a masterpiece created using the world's finest ingredients and exceptional craftsmanship."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "select",
+          "id": "scent",
+          "label": "Scent Profile (Particle Color)",
+          "options": [
+            { "value": "gold", "label": "Gold" },
+            { "value": "noir", "label": "Noir / Silver" },
+            { "value": "rose", "label": "Rose / Pink" },
+            { "value": "amber", "label": "Amber / Orange" }
+          ],
+          "default": "gold"
+        },
+        {
+          "type": "text",
+          "id": "type_text",
+          "label": "Type Text",
+          "default": "EXTRAIT DE PARFUM"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "NOIR ECLIPSE"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "A mysterious blend of rare oud, spices and dark woods crafted for those who appreciate timeless sophistication."
+        },
+        {
+          "type": "text",
+          "id": "price_text",
+          "label": "Price Text",
+          "default": "From ₹8,999"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "EXPLORE COLLECTION"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "type": "trust_badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Badge Title",
+          "default": "Rare Ingredients"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Badge Text",
+          "default": "Sourced globally for exceptional quality"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Signature Collections",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "title": "NOIR ECLIPSE",
+            "scent": "noir"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "GOLDEN OUD",
+            "scent": "gold",
+            "description": "A majestic, rich fragrance capturing the pure essence of liquid gold, precious agarwood, and warm spices on volcanic rock."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "VELVET AMBER",
+            "scent": "amber",
+            "description": "An opulent and sensual fusion of dark amber, sweet resins, and hot spices bathed in a glowing crystal sunset."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "title": "MIDNIGHT ROSE",
+            "scent": "rose",
+            "description": "A seductive, deep romance of dark damask rose petals entwined with precious black amber and smooth patchouli."
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "title": "Rare Ingredients",
+            "text": "Sourced globally for exceptional quality",
+            "icon_svg": "<svg class=\"trust-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"><path d=\"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\"/></svg>"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "title": "Long Lasting Performance",
+            "text": "Extrait strength for full-day projection",
+            "icon_svg": "<svg class=\"trust-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "title": "Master Perfumers",
+            "text": "Artisanal blending by industry legends",
+            "icon_svg": "<svg class=\"trust-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg>"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "title": "Luxury Packaging",
+            "text": "Meticulously crafted box and heavy glass",
+            "icon_svg": "<svg class=\"trust-icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"/><line x1=\"9\" y1=\"3\" x2=\"9\" y2=\"21\"/><line x1=\"15\" y1=\"3\" x2=\"15\" y2=\"21\"/><line x1=\"3\" y1=\"9\" x2=\"21\" y2=\"9\"/><line x1=\"3\" y1=\"15\" x2=\"21\" y2=\"15\"/></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,115 @@
+{% comment %}
+  Renders a luxury collection card
+
+  Accepts:
+  - card_collection: {Object} Collection Liquid object
+  - media_aspect_ratio: {String} Size of the product image card
+  - columns: {Number}
+  - extend_height: {Boolean}
+  - wrapper_class: {String}
+  - placeholder_image: {String}
+
+  Usage:
+  {% render 'card-collection' %}
+{% endcomment %}
+
+{%- liquid
+  assign ratio = 1
+  if card_collection.featured_image and media_aspect_ratio == 'portrait'
+    assign ratio = 0.8
+  elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
+    assign ratio = card_collection.featured_image.aspect_ratio
+  endif
+  if ratio == 0 or ratio == null
+    assign ratio = 1
+  endif
+-%}
+
+<div class="lux-collection-card-wrapper {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+  <a href="{% if card_collection != blank %}{{ card_collection.url }}{% else %}#{% endif %}" class="lux-collection-card-link" aria-label="{{ card_collection.title | escape }}">
+    
+    <!-- Luxury Glass Card -->
+    <div class="lux-collection-card">
+      
+      <!-- Ambient effects -->
+      <div class="lux-col-ambient"></div>
+      <div class="lux-col-halo-ring lux-col-halo-outer"></div>
+      <div class="lux-col-halo-ring lux-col-halo-inner"></div>
+      <div class="lux-col-light-sweep"></div>
+      <div class="lux-col-glow-top"></div>
+      
+      <!-- Image Area -->
+      <div class="lux-col-image-wrap" style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+        {%- if card_collection.featured_image -%}
+          <img
+            srcset="
+              {%- if card_collection.featured_image.width >= 165 -%}{{ card_collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+              {%- if card_collection.featured_image.width >= 530 -%}{{ card_collection.featured_image | image_url: width: 530 }} 530w,{%- endif -%}
+              {%- if card_collection.featured_image.width >= 750 -%}{{ card_collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if card_collection.featured_image.width >= 1000 -%}{{ card_collection.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
+              {%- if card_collection.featured_image.width >= 1500 -%}{{ card_collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+              {{ card_collection.featured_image | image_url }} {{ card_collection.featured_image.width }}w
+            "
+            src="{{ card_collection.featured_image | image_url: width: 750 }}"
+            sizes="(min-width: 990px) calc((100vw - 10rem) / {{ columns }}), (min-width: 750px) calc((100vw - 10rem) / 2), calc(100vw - 3rem)"
+            alt="{{ card_collection.featured_image.alt | escape }}"
+            height="{{ card_collection.featured_image.height }}"
+            width="{{ card_collection.featured_image.width }}"
+            loading="lazy"
+            class="lux-col-image motion-reduce"
+          >
+        {%- elsif card_collection == blank -%}
+          {{ placeholder_image | default: 'collection-1' | placeholder_svg_tag: 'lux-col-placeholder' }}
+        {%- else -%}
+          <div class="lux-col-no-image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,215,0,0.3)" stroke-width="0.5" width="80" height="80">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+        {%- endif -%}
+        
+        <!-- Cinematic overlay -->
+        <div class="lux-col-overlay"></div>
+        
+        <!-- Product count badge -->
+        {%- if card_collection != blank and card_collection.all_products_count > 0 -%}
+          <div class="lux-col-count-badge">
+            <span>{{ card_collection.all_products_count }}</span>
+            <span class="lux-col-count-label">PIECES</span>
+          </div>
+        {%- endif -%}
+      </div>
+      
+      <!-- Info Area -->
+      <div class="lux-col-info">
+        <div class="lux-col-divider">
+          <span class="lux-col-divider-line"></span>
+          <span class="lux-col-divider-gem">◆</span>
+          <span class="lux-col-divider-line"></span>
+        </div>
+        
+        <h3 class="lux-col-title">
+          {%- if card_collection.title != blank -%}
+            {{- card_collection.title | escape -}}
+          {%- else -%}
+            {{ 'onboarding.collection_title' | t }}
+          {%- endif -%}
+        </h3>
+        
+        {%- if card_collection.description != blank -%}
+          <p class="lux-col-desc">{{- card_collection.description | strip_html | truncatewords: 10 -}}</p>
+        {%- endif -%}
+        
+        <div class="lux-col-cta">
+          <span class="lux-col-cta-text">EXPLORE</span>
+          <span class="lux-col-cta-arrow">→</span>
+        </div>
+      </div>
+      
+      <!-- Bottom pedestal glow -->
+      <div class="lux-col-pedestal"></div>
+      
+    </div>
+  </a>
+</div>
+

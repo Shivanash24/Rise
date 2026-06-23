@@ -1,0 +1,541 @@
+/* ==========================================================================
+   ULTRA PREMIUM COLLECTIONS PAGE — LUXURY SHOWCASE
+   ========================================================================== */
+
+/* ---------- Page Container ---------- */
+.luxury-collections-page {
+  position: relative;
+  min-height: 100vh;
+  background: #080808;
+  overflow: hidden;
+  padding: 0 0 8rem 0;
+}
+
+/* ---------- Ambient Background ---------- */
+.luxury-page-ambience {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambience-glow {
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.07;
+}
+
+.ambience-glow-left {
+  top: 10%; left: -10%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 1), transparent 70%);
+}
+
+.ambience-glow-right {
+  bottom: 10%; right: -10%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.8), transparent 70%);
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0%   { opacity: 0.04; transform: scale(1); }
+  100% { opacity: 0.12; transform: scale(1.2); }
+}
+
+.ambience-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.6);
+  animation: particleDrift 15s ease-in-out infinite;
+}
+
+.ambience-p1 { top: 20%; left: 15%; animation-delay: 0s;   animation-duration: 18s; }
+.ambience-p2 { top: 60%; left: 70%; animation-delay: 5s;   animation-duration: 22s; }
+.ambience-p3 { top: 80%; left: 30%; animation-delay: 10s;  animation-duration: 16s; }
+
+@keyframes particleDrift {
+  0%, 100% { transform: translateY(0)    translateX(0);    opacity: 0.3; }
+  33%       { transform: translateY(-40px) translateX(20px); opacity: 0.8; }
+  66%       { transform: translateY(-20px) translateX(-15px); opacity: 0.5; }
+}
+
+/* ---------- Page Header ---------- */
+.luxury-collections-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 10rem 2rem 6rem;
+}
+
+.luxury-header-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.ornament-line {
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.5), transparent);
+}
+
+.ornament-diamond {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 215, 0, 0.7);
+  transform: rotate(45deg);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.luxury-collections-title {
+  font-family: "Playfair Display", "Cinzel", "Georgia", serif;
+  font-size: clamp(3rem, 6vw, 7rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 30%, #b38728 60%, #fbf5b7 80%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin: 0.5rem 0;
+}
+
+.luxury-collections-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  color: rgba(255, 215, 0, 0.5);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* ---------- Grid ---------- */
+.luxury-collections-grid {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  list-style: none;
+}
+
+.luxury-collections-grid.collection-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* ---------- Card Wrapper ---------- */
+.lux-collection-card-wrapper {
+  height: 100%;
+}
+
+.lux-collection-card-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+}
+
+/* ---------- Luxury Glass Card ---------- */
+.lux-collection-card {
+  position: relative;
+  height: 100%;
+  min-height: 420px;
+  background: rgba(18, 18, 18, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 215, 0, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.5s ease,
+    box-shadow 0.7s ease;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 0 30px rgba(255, 215, 0, 0.03);
+  will-change: transform;
+}
+
+.lux-collection-card-link:hover .lux-collection-card {
+  transform: perspective(1200px) rotateX(2deg) rotateY(-2deg) translateY(-8px) scale(1.01);
+  border-color: rgba(255, 215, 0, 0.4);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 0 40px rgba(255, 215, 0, 0.06);
+}
+
+/* ---------- Ambient Glow ---------- */
+.lux-col-glow-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.12), transparent 70%);
+  opacity: 0.4;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lux-collection-card-link:hover .lux-col-glow-top { opacity: 1; }
+
+.lux-col-ambient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.04) 0%, transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+.lux-collection-card-link:hover .lux-col-ambient { opacity: 1; }
+
+/* ---------- Halo Rings ---------- */
+.lux-col-halo-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: rgba(255, 215, 0, 0.15);
+  z-index: 1;
+  pointer-events: none;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.lux-col-halo-outer {
+  width: 75%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-width: 1px;
+  animation: colHaloRotateOuter 25s linear infinite;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.05);
+}
+
+.lux-col-halo-inner {
+  width: 50%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-width: 1px;
+  border-style: dashed;
+  border-color: rgba(255, 215, 0, 0.08);
+  animation: colHaloRotateInner 18s linear infinite reverse;
+}
+
+.lux-collection-card-link:hover .lux-col-halo-outer {
+  border-color: rgba(255, 215, 0, 0.35);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2), inset 0 0 30px rgba(255, 215, 0, 0.1);
+}
+
+.lux-collection-card-link:hover .lux-col-halo-inner {
+  border-color: rgba(255, 215, 0, 0.2);
+}
+
+@keyframes colHaloRotateOuter {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes colHaloRotateInner {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ---------- Light Sweep ---------- */
+.lux-col-light-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 215, 0, 0.04) 50%,
+    transparent 60%
+  );
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.lux-collection-card-link:hover .lux-col-light-sweep {
+  opacity: 1;
+  animation: colLightSweep 1.8s ease-in-out;
+}
+
+@keyframes colLightSweep {
+  0%   { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ---------- Image Area ---------- */
+.lux-col-image-wrap {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 260px;
+  overflow: hidden;
+}
+
+.lux-col-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lux-collection-card-link:hover .lux-col-image {
+  transform: scale(1.06);
+}
+
+.lux-col-placeholder,
+.lux-col-no-image {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 20, 20, 0.8);
+}
+
+/* ---------- Cinematic Overlay ---------- */
+.lux-col-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(8, 8, 8, 0.85) 100%
+  );
+  z-index: 3;
+}
+
+/* ---------- Product Count Badge ---------- */
+.lux-col-count-badge {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.lux-col-count-badge span:first-child {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lux-col-count-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 215, 0, 0.5) !important;
+  -webkit-text-fill-color: rgba(255, 215, 0, 0.5) !important;
+}
+
+/* ---------- Info Area ---------- */
+.lux-col-info {
+  position: relative;
+  z-index: 4;
+  padding: 1.5rem 2rem 2rem;
+  text-align: center;
+}
+
+.lux-col-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.lux-col-divider-line {
+  display: block;
+  height: 1px;
+  width: 40px;
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.4), transparent);
+}
+
+.lux-col-divider-gem {
+  font-size: 0.5rem;
+  color: rgba(255, 215, 0, 0.6);
+}
+
+.lux-col-title {
+  font-family: "Playfair Display", "Cinzel", "Georgia", serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 0.6rem;
+  transition: color 0.3s ease;
+}
+
+.lux-collection-card-link:hover .lux-col-title {
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lux-col-desc {
+  font-family: "Inter", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 1.2rem;
+  line-height: 1.6;
+}
+
+.lux-col-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.4s ease;
+}
+
+.lux-collection-card-link:hover .lux-col-cta {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(255, 215, 0, 0.5);
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.lux-col-cta-text {
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: rgba(255, 215, 0, 0.8);
+}
+
+.lux-col-cta-arrow {
+  font-size: 0.9rem;
+  color: rgba(255, 215, 0, 0.8);
+  transition: transform 0.3s ease;
+}
+
+.lux-collection-card-link:hover .lux-col-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- Pedestal ---------- */
+.lux-col-pedestal {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.3), transparent);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  z-index: 5;
+  transition: all 0.5s ease;
+}
+
+.lux-collection-card-link:hover .lux-col-pedestal {
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.7), transparent);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+/* ---------- Grid Base Overrides ---------- */
+.collection-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.collection-list-title { margin: 0; }
+
+.collection-list__item:only-child {
+  max-width: 40%;
+  width: 40%;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 989px) {
+  .luxury-collections-header { padding: 8rem 2rem 4rem; }
+  .luxury-collections-grid { padding: 0 1.5rem; }
+  .lux-collection-card { min-height: 360px; }
+}
+
+@media screen and (max-width: 749px) {
+  .luxury-collections-header { padding: 7rem 1.5rem 3rem; }
+  .luxury-collections-grid { padding: 0 1rem; }
+  .lux-collection-card { min-height: 300px; }
+  .lux-col-halo-ring { display: none; }
+  .collection-list__item:only-child { max-width: 100%; width: 100%; }
+
+  .section-collection-list .collection-list:not(.slider) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .slider.collection-list--1-items,
+  .slider.collection-list--2-items,
+  .slider.collection-list--3-items,
+  .slider.collection-list--4-items {
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collection-list__item a:hover { box-shadow: none; }
+}
+
+@media screen and (max-width: 989px) {
+  .collection-list.slider .collection-list__item { max-width: 100%; }
+}
+
+.collection-list-view-all { margin-top: 2rem; }
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lux-col-halo-outer,
+  .lux-col-halo-inner,
+  .ambience-glow-right,
+  .ambience-particle {
+    animation: none !important;
+  }
+
+  .lux-collection-card {
+    transition: border-color 0.3s ease !important;
+  }
+
+  .lux-collection-card-link:hover .lux-collection-card {
+    transform: translateY(-4px) !important;
+  }
+}

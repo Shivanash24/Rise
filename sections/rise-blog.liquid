@@ -1,0 +1,190 @@
+<div class="rise-blog-page">
+  <div class="blog-header">
+    <h1>THE JOURNAL</h1>
+    <p>Stories, inspiration, and the art of fine fragrance.</p>
+  </div>
+
+  <div class="blog-grid">
+    {%- if blog.articles.size > 0 -%}
+      {%- for article in blog.articles -%}
+        <article class="blog-card">
+          <a href="{{ article.url }}" class="blog-image">
+            <img src="{{ article.image | img_url: '1024x1024' }}" alt="{{ article.title }}">
+          </a>
+          <div class="blog-content">
+            <span class="blog-date">{{ article.published_at | time_tag: format: 'date' }}</span>
+            <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+            <p>{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>
+            <a href="{{ article.url }}" class="read-more">READ MORE</a>
+          </div>
+        </article>
+      {%- endfor -%}
+    {%- else -%}
+      <!-- Mockup Articles if none exist -->
+      <article class="blog-card">
+        <a href="#" class="blog-image">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="The Art of Extraction">
+        </a>
+        <div class="blog-content">
+          <span class="blog-date">OCTOBER 15, 2024</span>
+          <h2><a href="#">The Art of Extraction</a></h2>
+          <p>Discover the painstaking process of extracting pure absolutes from the rarest flowers in Grasse.</p>
+          <a href="#" class="read-more">READ MORE</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="#" class="blog-image">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Understanding Oud" style="filter: grayscale(1);">
+        </a>
+        <div class="blog-content">
+          <span class="blog-date">SEPTEMBER 28, 2024</span>
+          <h2><a href="#">Understanding Liquid Gold</a></h2>
+          <p>An exploration of Oud, its origins, and why it remains one of the most coveted ingredients in perfumery.</p>
+          <a href="#" class="read-more">READ MORE</a>
+        </div>
+      </article>
+      
+      <article class="blog-card">
+        <a href="#" class="blog-image">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Layering Fragrances" style="filter: sepia(0.5);">
+        </a>
+        <div class="blog-content">
+          <span class="blog-date">SEPTEMBER 10, 2024</span>
+          <h2><a href="#">The Guide to Scent Layering</a></h2>
+          <p>Master the technique of combining perfumes to create a signature scent that is entirely your own.</p>
+          <a href="#" class="read-more">READ MORE</a>
+        </div>
+      </article>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+.rise-blog-page {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) + 60px) var(--spacing-md) var(--spacing-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: var(--spacing-md);
+}
+
+.blog-header h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.blog-header p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: rgba(239, 232, 223, 0.7);
+  text-transform: uppercase;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.blog-card {
+  background: #0a0a0a;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.blog-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.blog-image {
+  display: block;
+  overflow: hidden;
+  height: 300px;
+}
+
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-image img {
+  transform: scale(1.05);
+}
+
+.blog-content {
+  padding: 2rem;
+}
+
+.blog-date {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--color-soft-gold);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content h2 a {
+  color: var(--color-ivory);
+  text-decoration: none;
+}
+
+.blog-content p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(239, 232, 223, 0.7);
+  margin-bottom: 1.5rem;
+}
+
+.read-more {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-champagne);
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-champagne);
+  padding-bottom: 0.25rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.read-more:hover {
+  color: var(--color-ivory);
+  border-color: var(--color-ivory);
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Blog",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Blog"
+    }
+  ]
+}
+{% endschema %}

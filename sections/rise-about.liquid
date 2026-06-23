@@ -1,0 +1,246 @@
+<div class="rise-about-page">
+  <div class="about-hero">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.subheading }}</p>
+  </div>
+  
+  <div class="about-content">
+    <div class="about-text">
+      {{ section.settings.story_html }}
+    </div>
+    
+    <div class="about-stats">
+      {% for block in section.blocks %}
+      <div class="stat-item" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.stat_value }}</h3>
+        <p>{{ block.settings.stat_label }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="about-image">
+    <div class="about-image-inner">
+      {% if section.settings.image %}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: alt: section.settings.heading }}
+      {% else %}
+        <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Master Perfumer at work">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.rise-about-page {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+  padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xxl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-hero {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.about-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-hero p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--color-warm-beige);
+  text-transform: uppercase;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.about-text p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(239, 232, 223, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  border-left: 1px solid rgba(212, 175, 55, 0.2);
+  padding-left: 3rem;
+}
+
+.stat-item h3 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--color-champagne);
+  margin-bottom: 0.25rem;
+}
+
+.stat-item p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: rgba(239, 232, 223, 0.6);
+  text-transform: uppercase;
+}
+
+.about-image {
+  position: relative;
+  margin-top: var(--spacing-lg);
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+/* Luxurious Offset Gold Border */
+.about-image::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  bottom: 20px;
+  left: 20px;
+  border: 1px solid var(--color-champagne);
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-image:hover::before {
+  top: -10px;
+  right: -10px;
+  bottom: 10px;
+  left: 10px;
+  opacity: 1;
+  border-color: var(--color-soft-gold);
+}
+
+.about-image-inner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.about-image-inner img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-image:hover .about-image-inner img {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+  .about-stats {
+    border-left: none;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding-left: 0;
+    padding-top: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE About",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "THE JOURNEY BEHIND RISE"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "A relentless pursuit of olfactory perfection."
+    },
+    {
+      "type": "html",
+      "id": "story_html",
+      "label": "Story Content (HTML)",
+      "default": "<p>Born from a vision to redefine luxury perfumery, RISE was established by master perfumers who believed that true elegance lies in the rarest ingredients and the most delicate balance of notes.</p><p>Every bottle is a testament to our commitment to craftsmanship. From hand-picked botanicals in Grasse to the meticulous aging process, we ensure that each fragrance tells a unique story.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "About Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_value",
+          "label": "Stat Value",
+          "default": "10+"
+        },
+        {
+          "type": "text",
+          "id": "stat_label",
+          "label": "Stat Label",
+          "default": "Years of Mastery"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RISE About",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "10+",
+            "stat_label": "Years of Mastery"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "50+",
+            "stat_label": "Bespoke Scents"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat_value": "100k+",
+            "stat_label": "Customers Worldwide"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

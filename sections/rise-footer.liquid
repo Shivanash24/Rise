@@ -1,0 +1,269 @@
+<footer class="rise-footer">
+  <div class="rise-footer-container">
+    <div class="footer-column brand-column">
+      <div class="rise-logo-footer">RISE</div>
+      <p class="footer-tagline">Timeless fragrances crafted with passion and perfection.</p>
+      <div class="social-icons">
+        <!-- Icons (Facebook, Instagram, Mail) -->
+        <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a href="#"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+      </div>
+    </div>
+    
+    <div class="footer-column">
+      <h4>SHOP</h4>
+      <ul>
+        <li><a href="/collections/all">All Products</a></li>
+        <li><a href="/?view=best-sellers">Best Sellers</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>COMPANY</h4>
+      <ul>
+        <li><a href="/pages/about">Our Story</a></li>
+        <li><a href="/pages/ingredients">Ingredients</a></li>
+        <li><a href="/pages/sustainability">Sustainability</a></li>
+        <li><a href="/pages/careers">Careers</a></li>
+        <li><a href="/pages/press">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>HELP</h4>
+      <ul>
+        <li><a href="/pages/faq">FAQ</a></li>
+        <li><a href="/pages/shipping">Shipping</a></li>
+        <li><a href="/pages/returns">Returns</a></li>
+        <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column newsletter-column">
+      <h4>JOIN OUR WORLD</h4>
+      <p>Subscribe to get special offers, giveaways, and once-in-a-lifetime deals.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">→</button>
+      </form>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; {{ 'now' | date: '%Y' }} RISE PERFUME. ALL RIGHTS RESERVED.</p>
+    
+    <div class="footer-bottom-right">
+      <div class="footer-currency">
+        <select name="currency" class="currency-selector" aria-label="Select Currency">
+          <option value="USD" selected>USD ($) - United States</option>
+          <option value="CAD">CAD ($) - Canada</option>
+        </select>
+      </div>
+      
+      <div class="payment-icons">
+        <svg viewBox="0 0 38 24" width="38" height="24" fill="none"><rect width="38" height="24" rx="3" fill="#fff"/><path d="M11.9 16.9l2.4-11.4h3.7L15.6 17h-3.7zm11.7-11.1c-1-.3-2.6-.5-4.2-.5-4.4 0-7.5 2.2-7.5 5.5 0 2.4 2.2 3.8 3.9 4.6 1.7.8 2.3 1.3 2.3 2.1 0 1.2-1.6 1.8-3 1.8-1.4 0-2.6-.2-3.6-.6l-.5-.2-.5 3.3c.9.4 2.6.8 4.4.8 4.7 0 7.8-2.3 7.8-5.8 0-1.9-1.1-3.3-3.7-4.5-1.5-.7-2.4-1.2-2.4-1.9 0-1.1 1.2-1.7 2.8-1.7 1.2 0 2.2.2 3 .5l.4.2.6-3.1zM34.7 5.5h-2.8c-.9 0-1.6.3-1.9 1.1l-5.4 10.3h3.9l.8-2.2h4.7l.4 2.2h3.5l-3.2-11.4zm-4.3 6.6l1.6-4.5 1 4.5h-2.6z" fill="#142688"/><path d="M8.5 5.5l-3.3 8.3L4 6.8C3.8 6 3 5.5 2.2 5.5H.1L.1 5.8c1.7.3 3.6 1.1 4.8 2l2.6 9.1h4l3.9-11.4H11.5L8.5 5.5z" fill="#f9a021"/></svg>
+        <svg viewBox="0 0 38 24" width="38" height="24" fill="none"><rect width="38" height="24" rx="3" fill="#fff"/><circle cx="15" cy="12" r="7" fill="#eb001b"/><circle cx="23" cy="12" r="7" fill="#f79e1b"/><path d="M19 12c0-2.3 1.1-4.3 2.8-5.5-1.7-1.2-4-1.2-5.7 0C17.9 7.7 19 9.7 19 12s-1.1 4.3-2.8 5.5c1.7 1.2 4 1.2 5.7 0C17.9 16.3 19 14.3 19 12z" fill="#ff5f00"/></svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.rise-footer {
+  background: var(--color-luxury-black);
+  color: var(--color-warm-beige);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.rise-footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+  gap: var(--spacing-lg);
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.rise-logo-footer {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--color-champagne);
+  letter-spacing: 0.2em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-tagline {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+  color: rgba(239, 232, 223, 0.7); /* warm beige with opacity */
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a {
+  color: var(--color-champagne);
+  transition: color 0.3s ease;
+}
+.social-icons a:hover {
+  color: var(--color-soft-gold);
+}
+
+.footer-column h4 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: rgba(239, 232, 223, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: var(--color-champagne);
+}
+
+.newsletter-column p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(239, 232, 223, 0.7);
+  margin-bottom: var(--spacing-sm);
+}
+
+.newsletter-form {
+  display: flex;
+  border-bottom: 1px solid var(--color-champagne);
+  padding-bottom: 0.5rem;
+}
+
+.newsletter-form input {
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+.newsletter-form input:focus {
+  outline: none;
+}
+
+.newsletter-form button {
+  background: transparent;
+  border: none;
+  color: var(--color-champagne);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.footer-bottom {
+  max-width: 1600px;
+  margin: var(--spacing-xl) auto 0;
+  padding: var(--spacing-md) var(--spacing-md) 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(239, 232, 223, 0.5);
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-currency {
+  position: relative;
+}
+
+.currency-selector {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-ivory);
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.currency-selector:hover, .currency-selector:focus {
+  border-color: var(--color-champagne);
+  outline: none;
+}
+
+.currency-selector option {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+}
+
+.footer-currency::after {
+  content: '▼';
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: var(--color-champagne);
+  pointer-events: none;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .footer-bottom-right {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Footer",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Footer"
+    }
+  ]
+}
+{% endschema %}

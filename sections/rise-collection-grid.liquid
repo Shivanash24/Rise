@@ -1,0 +1,387 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+<div class="rise-collection-page">
+  <div class="collection-header">
+    <h1 class="collection-title">{{ collection.title | default: 'ALL COLLECTIONS' }}</h1>
+    <div class="collection-utils">
+      <!-- Search icon / View toggles -->
+      <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+    </div>
+  </div>
+
+  <div class="collection-layout">
+    <!-- Sidebar Filters -->
+    <aside class="collection-sidebar">
+      <div class="filter-header">
+        <h3>FILTER BY</h3>
+        <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="clear-all" style="text-decoration: none;">CLEAR ALL</a>
+      </div>
+      
+      <form class="collection-filters-form">
+        {%- for filter in collection.filters -%}
+          <div class="filter-group">
+            <h4 class="filter-group-title">{{ filter.label | upcase }} <span>+</span></h4>
+            {%- case filter.type -%}
+              {%- when 'boolean', 'list' -%}
+                <ul class="filter-list">
+                  {%- for filter_value in filter.values -%}
+                    <li>
+                      <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
+                        <input type="checkbox"
+                          name="{{ filter_value.param_name }}"
+                          value="{{ filter_value.value }}"
+                          id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                          {% if filter_value.active %}checked{% endif %}
+                          {% if filter_value.count == 0 and filter_value.active == false %}disabled{% endif %}
+                        >
+                        <span class="filter-text">{{ filter_value.label }} ({{ filter_value.count }})</span>
+                      </label>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- when 'price_range' -%}
+                <div class="filter-price">
+                  <div class="price-field">
+                    <span>{{ cart.currency.symbol }}</span>
+                    <input name="{{ filter.min_value.param_name }}"
+                      type="number"
+                      placeholder="0"
+                      min="0"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                    >
+                  </div>
+                  <span>-</span>
+                  <div class="price-field">
+                    <span>{{ cart.currency.symbol }}</span>
+                    <input name="{{ filter.max_value.param_name }}"
+                      type="number"
+                      placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      min="0"
+                      max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                      {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                    >
+                  </div>
+                </div>
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+        <div class="filter-actions" style="margin-top: 1rem;">
+          <button type="submit" class="apply-filters-btn">APPLY FILTERS</button>
+        </div>
+      </form>
+    </aside>
+
+    <!-- Product Grid -->
+    <main class="collection-main">
+      <div class="collection-toolbar">
+        <div class="results-count">{{ collection.products_count | default: 8 }} PRODUCTS</div>
+        <div class="sort-by">
+          <label>SORT BY:</label>
+          <select>
+            <option>Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        {%- if collection.products.size > 0 -%}
+          {%- for product in collection.products -%}
+            <div class="product-card card-wrapper">
+              <div class="card--card">
+                <div class="card-glow-overlay"></div>
+                <div class="luxury-ambient-environment"></div>
+                <div class="luxury-halo-ring"></div>
+                <div class="luxury-light-sweep"></div>
+                
+                <div class="product-image-container card__inner">
+                  <div class="luxury-pedestal"></div>
+                  <div class="luxury-floating-product">
+                    <a href="{{ product.url }}">
+                      <img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title }}">
+                    </a>
+                  </div>
+                </div>
+                
+                <div class="product-info card__content">
+                  <div class="card__information">
+                    <h3 class="card__heading"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                    <p class="product-price price price-item">{{ product.price | money }}</p>
+                  </div>
+                  <div class="quick-add">
+                    <button class="quick-add__submit">ADD TO CART</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Mockup static grid if no products exist yet -->
+          {% for i in (1..8) %}
+          <div class="product-card card-wrapper">
+            <div class="card--card">
+              <div class="card-glow-overlay"></div>
+              <div class="luxury-ambient-environment"></div>
+              <div class="luxury-halo-ring"></div>
+              <div class="luxury-light-sweep"></div>
+              
+              <div class="product-image-container card__inner">
+                <div class="luxury-pedestal"></div>
+                <div class="luxury-floating-product">
+                  <a href="/?view=product">
+                    <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Noir Eclipse">
+                  </a>
+                </div>
+              </div>
+              
+              <div class="product-info card__content">
+                <div class="card__information">
+                  <h3 class="card__heading"><a href="/?view=product">NOIR ECLIPSE</a></h3>
+                  <p class="product-price price price-item">$250.00</p>
+                </div>
+                <div class="quick-add">
+                  <button class="quick-add__submit">ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {%- endif -%}
+      </div>
+    </main>
+  </div>
+</div>
+
+<style>
+.rise-collection-page {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) + 60px) var(--spacing-md) var(--spacing-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.collection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.collection-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  letter-spacing: 0.15em;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+}
+
+.collection-layout {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.collection-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.filter-header h3 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+}
+
+.clear-all {
+  background: transparent;
+  border: none;
+  color: rgba(239, 232, 223, 0.5);
+  font-size: 0.65rem;
+  cursor: pointer;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group-title {
+  font-family: var(--font-sans);
+  font-size: 0.95rem; /* Increased font size */
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.filter-list li {
+  margin-bottom: 0.6rem;
+}
+
+.filter-list label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem; /* Increased font size */
+  color: rgba(239, 232, 223, 0.8); /* Slightly brighter for readability */
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
+.filter-list input[type="checkbox"] {
+  accent-color: var(--color-champagne);
+  width: 16px;
+  height: 16px;
+}
+
+.filter-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.price-field {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 0.2rem 0.5rem;
+}
+
+.price-field span {
+  color: var(--color-champagne);
+  margin-right: 0.2rem;
+  font-size: 0.85rem;
+}
+
+.price-field input {
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  width: 60px;
+  font-size: 0.85rem;
+}
+
+.price-field input:focus {
+  outline: none;
+}
+
+.apply-filters-btn {
+  background: var(--color-champagne);
+  color: var(--color-luxury-black);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.apply-filters-btn:hover {
+  background: var(--color-soft-gold);
+}
+
+.collection-main {
+  flex: 1;
+}
+
+.collection-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(239, 232, 223, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.sort-by select {
+  background: transparent;
+  border: none;
+  color: var(--color-champagne);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  outline: none;
+  margin-left: 0.5rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.product-card {
+  text-align: center;
+}
+
+.product-image-container {
+  padding: 2rem;
+  margin-bottom: 1rem;
+  background: transparent;
+  border: none;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-info h3 {
+  margin-bottom: 0.25rem;
+}
+
+.product-info a {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+  text-decoration: none;
+}
+
+.product-price {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-champagne);
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Collection Grid",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Collection Grid"
+    }
+  ]
+}
+{% endschema %}

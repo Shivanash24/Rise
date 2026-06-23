@@ -1,0 +1,104 @@
+<div class="fragrance-notes-bar">
+  <div class="notes-container">
+    <div class="note-item">
+      <div class="note-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h4M12 2a10 10 0 0 0-10 10v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H2"></path></svg>
+      </div>
+      <div class="note-text">
+        <h4>TOP NOTES</h4>
+        <p>The first impression</p>
+      </div>
+    </div>
+    
+    <div class="note-item">
+      <div class="note-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </div>
+      <div class="note-text">
+        <h4>HEART NOTES</h4>
+        <p>The soul of the fragrance</p>
+      </div>
+    </div>
+
+    <div class="note-item">
+      <div class="note-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      </div>
+      <div class="note-text">
+        <h4>BASE NOTES</h4>
+        <p>The lasting memory</p>
+      </div>
+    </div>
+
+    <div class="note-item">
+      <div class="note-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      </div>
+      <div class="note-text">
+        <h4>EXTRAIT QUALITY</h4>
+        <p>40% Pure Perfume Oil</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.fragrance-notes-bar {
+  background: var(--color-luxury-black);
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.notes-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.note-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.note-icon {
+  color: var(--color-soft-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-text h4 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+  margin: 0 0 0.25rem 0;
+}
+
+.note-text p {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(239, 232, 223, 0.5);
+  margin: 0;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Fragrance Notes Bar",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Fragrance Notes Bar"
+    }
+  ]
+}
+{% endschema %}

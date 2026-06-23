@@ -1,0 +1,317 @@
+<section class="best-sellers-premium" data-section-id="{{ section.id }}">
+  <div class="premium-container">
+    <div class="bs-header">
+      <h1 class="bs-title">Our Best Sellers</h1>
+      <p class="bs-subtitle">Discover the fragrances that have captivated the world. Time-honored signatures crafted for the elite.</p>
+    </div>
+    
+    <div class="bs-grid">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <div class="bs-item product-card-wrapper" data-gsap-delay="{{ forloop.index | times: 0.2 }}">
+          {% if product != blank %}
+            <a href="{{ product.url }}" class="card">
+              <div class="card__inner">
+                {% if product.featured_media %}
+                  <img src="{{ product.featured_media | img_url: '600x600', crop: 'center' }}" alt="{{ product.title | escape }}" class="card__media">
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'card__media placeholder-svg' }}
+                {% endif %}
+              </div>
+              <div class="card__content">
+                <h3 class="bs-product-title">{{ product.title }}</h3>
+                <p class="bs-product-price">{{ product.price | money }}</p>
+                <div class="bs-btn-wrapper">
+                  <span class="bs-btn">Discover</span>
+                </div>
+              </div>
+              <div class="card-glow-overlay"></div>
+            </a>
+          {% else %}
+            <!-- Placeholder -->
+            <a href="#" class="card">
+              <div class="card__inner">
+                {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'card__media placeholder-svg' }}
+              </div>
+              <div class="card__content">
+                <h3 class="bs-product-title">Premium Fragrance {{ forloop.index }}</h3>
+                <p class="bs-product-price">$120.00</p>
+                <div class="bs-btn-wrapper">
+                  <span class="bs-btn">Discover</span>
+                </div>
+              </div>
+              <div class="card-glow-overlay"></div>
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+      
+      <!-- Show dummy items if no blocks added so the design is visible initially -->
+      {% if section.blocks.size == 0 %}
+         {% for i in (1..4) %}
+            <div class="bs-item product-card-wrapper" data-gsap-delay="{{ forloop.index | times: 0.2 }}">
+              <a href="#" class="card">
+                <div class="card__inner">
+                  {{ 'product-' | append: i | placeholder_svg_tag: 'card__media placeholder-svg' }}
+                </div>
+                <div class="card__content">
+                  <h3 class="bs-product-title">Signature Essence {{ i }}</h3>
+                  <p class="bs-product-price">$185.00</p>
+                  <div class="bs-btn-wrapper">
+                    <span class="bs-btn">Discover</span>
+                  </div>
+                </div>
+                <div class="card-glow-overlay"></div>
+              </a>
+            </div>
+         {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+.best-sellers-premium {
+  padding: var(--spacing-xxl) 0;
+  background: var(--color-luxury-black);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background accent */
+.best-sellers-premium::before {
+  content: '';
+  position: absolute;
+  top: -10%; left: -10%; width: 50%; height: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 70%);
+  z-index: 0;
+}
+
+.bs-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.bs-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 5vw + 1rem, 5.5rem);
+  color: var(--color-champagne);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.bs-subtitle {
+  font-size: 1.15rem;
+  color: rgba(239, 232, 223, 0.7);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+.bs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+}
+
+/* Asymmetrical Layout on Desktop */
+@media screen and (min-width: 1024px) {
+  .bs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--spacing-xxl);
+    column-gap: var(--spacing-xl);
+  }
+  
+  .bs-item:nth-child(even) {
+    margin-top: var(--spacing-xl);
+  }
+}
+
+.bs-item {
+  opacity: 0; /* for GSAP */
+  transform: translateY(50px);
+}
+
+.bs-item .card {
+  display: block;
+  text-decoration: none;
+  background: transparent !important;
+  border: 1px solid rgba(212, 175, 55, 0.1) !important;
+  padding: 1.5rem;
+  border-radius: 2px !important;
+  transition: all 0.5s ease;
+  height: 100%;
+}
+
+.bs-item .card:hover {
+  border-color: rgba(212, 175, 55, 0.4) !important;
+  background: rgba(10, 10, 10, 0.8) !important;
+}
+
+.bs-item .card__inner {
+  aspect-ratio: 4 / 5;
+  background: #0a0a0a !important;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.bs-item .card__media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bs-item .card:hover .card__media {
+  transform: scale(1.08);
+}
+
+.bs-item .card__content {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.bs-product-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-ivory);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.bs-product-price {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-soft-gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.bs-btn-wrapper {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.bs-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-ivory);
+  border-bottom: 1px solid var(--color-champagne);
+  padding-bottom: 0.3rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.bs-item .card:hover .bs-btn {
+  color: var(--color-champagne);
+  border-color: var(--color-soft-gold);
+}
+
+/* Make placeholders gray scale looking premium */
+.bs-item svg.placeholder-svg {
+  width: 100%;
+  height: 100%;
+  fill: rgba(239, 232, 223, 0.2);
+  background: #111;
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if GSAP is available (it's loaded globally in main.js)
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Header Animation
+    gsap.from('.bs-title', {
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.bs-header',
+        start: 'top 80%'
+      }
+    });
+    
+    gsap.from('.bs-subtitle', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.bs-header',
+        start: 'top 80%'
+      }
+    });
+
+    // Staggered Items Animation
+    const items = document.querySelectorAll('.bs-item');
+    items.forEach((item) => {
+      const delay = parseFloat(item.getAttribute('data-gsap-delay')) || 0;
+      gsap.to(item, {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        delay: delay * 0.5, // soften the delay
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 85%'
+        }
+      });
+    });
+  } else {
+    // Fallback if GSAP fails to load
+    document.querySelectorAll('.bs-item').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Best Sellers Showcase",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Featured Product",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers Showcase",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

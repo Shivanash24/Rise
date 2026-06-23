@@ -1,0 +1,238 @@
+<div class="rise-contact-page">
+  <div class="contact-header">
+    <h1>GET IN TOUCH</h1>
+    <p>Whether you are seeking a consultation for a bespoke fragrance or have inquiries about your order, our concierges are at your service.</p>
+  </div>
+
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h3>CLIENT CONCIERGE</h3>
+      <p>Available Monday to Friday, 9:00 AM to 6:00 PM (EST).</p>
+      
+      <div class="info-block">
+        <h4>EMAIL</h4>
+        <p><a href="mailto:concierge@riseperfume.com">concierge@riseperfume.com</a></p>
+      </div>
+      
+      <div class="info-block">
+        <h4>BOUTIQUE</h4>
+        <p>15 Place Vendôme<br>75001 Paris, France</p>
+      </div>
+    </div>
+
+    <div class="contact-form-container">
+      {%- form 'contact', id: 'ContactForm', class: 'rise-contact-form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="form-success">Thank you for your message. A member of our concierge team will be in touch shortly.</p>
+        {%- endif -%}
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ContactForm-name">Name</label>
+            <input type="text" id="ContactForm-name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-field">
+            <label for="ContactForm-email">Email</label>
+            <input type="email" id="ContactForm-email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="Enter your email address" required>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="ContactForm-subject">Subject (Optional)</label>
+          <input type="text" id="ContactForm-subject" name="contact[Subject]" placeholder="What is this regarding?">
+        </div>
+
+        <div class="form-field">
+          <label for="ContactForm-body">Message</label>
+          <textarea id="ContactForm-body" name="contact[body]" rows="6" placeholder="How can we assist you?" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">SEND MESSAGE</button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+<style>
+.rise-contact-page {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+  padding: calc(var(--spacing-xl) + 60px) var(--spacing-md) var(--spacing-xxl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.contact-header h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.contact-header p {
+  font-family: var(--font-sans);
+  font-size: 1.1rem; /* Increased */
+  line-height: 1.6;
+  color: rgba(239, 232, 223, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-xl);
+}
+
+.contact-info h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  margin-bottom: 1rem;
+}
+
+.contact-info > p {
+  font-family: var(--font-sans);
+  font-size: 1rem; /* Increased */
+  color: rgba(239, 232, 223, 0.7);
+  margin-bottom: 2rem;
+}
+
+.info-block {
+  margin-bottom: 2rem;
+}
+
+.info-block h4 {
+  font-family: var(--font-sans);
+  font-size: 0.9rem; /* Increased */
+  letter-spacing: 0.15em;
+  color: var(--color-soft-gold);
+  margin-bottom: 0.5rem;
+}
+
+.info-block p, .info-block a {
+  font-family: var(--font-sans);
+  font-size: 1rem; /* Increased */
+  line-height: 1.6;
+  color: var(--color-ivory);
+  text-decoration: none;
+}
+
+.info-block a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-champagne);
+}
+
+.contact-form-container {
+  background: #0a0a0a;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  padding: 3rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-field {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.form-row .form-field {
+  margin-bottom: 0;
+}
+
+.form-field label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.95rem; /* Increased */
+  letter-spacing: 0.1em;
+  color: rgba(239, 232, 223, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.form-field input, .form-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 1rem; /* Increased */
+  padding: 0.75rem 0;
+  transition: border-color 0.3s ease;
+}
+
+.form-field input:focus, .form-field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-champagne);
+}
+
+.form-field input::placeholder, .form-field textarea::placeholder {
+  color: rgba(239, 232, 223, 0.3);
+}
+
+.submit-btn {
+  background: var(--color-champagne);
+  border: none;
+  color: var(--color-luxury-black);
+  padding: 1rem 3rem;
+  font-family: var(--font-sans);
+  font-size: 1rem; /* Increased */
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: var(--color-soft-gold);
+}
+
+.form-success {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--color-champagne);
+  padding: 1rem;
+  color: var(--color-champagne);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .contact-form-container {
+    padding: 2rem 1.5rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Contact",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Contact"
+    }
+  ]
+}
+{% endschema %}

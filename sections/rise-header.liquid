@@ -1,0 +1,106 @@
+<header class="rise-header">
+  <div class="rise-header-container">
+    <div class="rise-logo">
+      <a href="{{ routes.root_url }}">RISE</a>
+    </div>
+    
+    <nav class="rise-nav">
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/collections/all">COLLECTION</a></li>
+        <li><a href="/?view=about">OUR STORY</a></li>
+        <li><a href="/pages/contact">CONTACT</a></li>
+      </ul>
+    </nav>
+
+    <div class="rise-icons">
+      <a href="{{ routes.search_url }}" class="icon-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </a>
+      <a href="{{ routes.account_url }}" class="icon-account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="icon-cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+.rise-header {
+  position: absolute; /* absolute instead of fixed */
+  /* removed top: 0 so it flows naturally under the announcement bar */
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's above hero content */
+  background: transparent; /* Changed to transparent for overlay */
+  border-bottom: none; /* Removed border */
+  transition: background 0.3s ease;
+}
+
+.rise-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem var(--spacing-md);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.rise-logo a {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-champagne);
+  text-decoration: none;
+  letter-spacing: 0.2em;
+}
+
+.rise-nav ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rise-nav a {
+  font-family: var(--font-sans);
+  font-size: 1.1rem; /* Increased font size */
+  color: var(--color-ivory);
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.rise-nav a:hover {
+  color: var(--color-soft-gold);
+}
+
+.rise-icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.rise-icons a {
+  color: var(--color-ivory);
+  transition: color 0.3s ease;
+}
+
+.rise-icons a:hover {
+  color: var(--color-soft-gold);
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Header",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Header"
+    }
+  ]
+}
+{% endschema %}

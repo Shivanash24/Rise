@@ -1,0 +1,606 @@
+<div class="rise-product-page">
+  <div class="product-layout">
+    
+    <!-- Left: Images -->
+    <div class="product-media" id="product-media-gallery">
+      <div class="main-image-container">
+        <div class="glass-card-effect"></div>
+        <div class="luxury-halo"></div>
+        <img id="MainProductImage" src="{{ product.featured_image | img_url: 'master' | default: 'luxury_perfume_bottle.png' | asset_url }}" alt="{{ product.title | default: 'NOIR ECLIPSE' }}">
+      </div>
+      <div class="thumbnail-grid">
+        <div class="thumb active" onclick="changeImage(this, '{{ product.featured_image | img_url: 'master' | default: 'luxury_perfume_bottle.png' | asset_url }}')">
+          <img src="{{ product.featured_image | img_url: 'medium' | default: 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb">
+        </div>
+        <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_lifestyle.png' | asset_url }}')">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Thumb">
+        </div>
+        <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_bottle.png' | asset_url }}')">
+          <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb" style="filter: sepia(0.5);">
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Details -->
+    <div class="product-details">
+      <h1 class="product-title">{{ product.title | default: 'NOIR ECLIPSE' }}</h1>
+      <p class="product-subtitle">{{ section.settings.subtitle }}</p>
+      
+      <div class="product-price">
+        {{ product.price | default: 25000 | money }}
+      </div>
+
+      <form action="{{ routes.cart_add_url | default: '/cart/add' }}" method="post" id="product-form-installment" class="form">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: 123456789 }}">
+        
+        <div class="product-variants">
+          <label>Select Size</label>
+          <div class="size-options">
+            <button type="button" class="size-btn active">50ml</button>
+            <button type="button" class="size-btn">100ml</button>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <div class="quantity-selector">
+            <button type="button" class="qty-btn" onclick="updateQuantity(-1)">-</button>
+            <input type="number" id="Quantity" name="quantity" value="1" min="1">
+            <button type="button" class="qty-btn" onclick="updateQuantity(1)">+</button>
+          </div>
+          
+          <button type="submit" name="add" class="add-to-cart-btn">ADD TO CART</button>
+          <button type="button" class="buy-it-now-btn">BUY IT NOW</button>
+        </div>
+      </form>
+
+      <!-- Fragrance Notes (Dynamic Blocks) -->
+      <div class="product-notes-grid">
+        <h4>FRAGRANCE PROFILE</h4>
+        <div class="notes-row">
+          {% for block in section.blocks %}
+            {% if block.type == 'note' %}
+              <div class="note-block" {{ block.shopify_attributes }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-soft-gold)" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <span>{{ block.settings.title }}<br><small>{{ block.settings.value }}</small></span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Accordion Details (Dynamic Blocks) -->
+      <div class="product-accordion">
+        {% for block in section.blocks %}
+          {% if block.type == 'accordion' %}
+            <div class="accordion-item" {{ block.shopify_attributes }}>
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                {{ block.settings.title }}
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>{{ block.settings.content }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  function changeImage(element, src) {
+    document.getElementById('MainProductImage').src = src;
+    document.querySelectorAll('.thumbnail-grid .thumb').forEach(el => el.classList.remove('active'));
+    element.classList.add('active');
+  }
+
+  function updateQuantity(change) {
+    const input = document.getElementById('Quantity');
+    let newValue = parseInt(input.value) + change;
+    if (newValue >= 1) {
+      input.value = newValue;
+    }
+  }
+
+  function toggleAccordion(button) {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('.accordion-icon');
+    const isActive = button.classList.contains('active');
+    
+    // Close all
+    document.querySelectorAll('.accordion-header').forEach(btn => {
+      btn.classList.remove('active');
+      btn.nextElementSibling.style.maxHeight = null;
+      btn.querySelector('.accordion-icon').innerText = '+';
+    });
+
+    if (!isActive) {
+      button.classList.add('active');
+      content.style.maxHeight = content.scrollHeight + "px";
+      icon.innerText = '-';
+    }
+  }
+
+  // 3D Tilt Effect for Main Image
+  const container = document.querySelector('.main-image-container');
+  const image = document.getElementById('MainProductImage');
+  const halo = document.querySelector('.luxury-halo');
+
+  if(container && image) {
+    container.addEventListener('mousemove', (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+      image.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.05)`;
+      halo.style.transform = `translate(-50%, -50%) translate(${x * 20}px, ${y * 20}px)`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      image.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)`;
+      halo.style.transform = `translate(-50%, -50%)`;
+    });
+  }
+</script>
+
+<style>
+.rise-product-page {
+  background: var(--color-luxury-black);
+  color: var(--color-ivory);
+  min-height: 100vh;
+  padding: calc(var(--spacing-xl) + 60px) var(--spacing-md) var(--spacing-xl);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.product-media {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.main-image-container {
+  position: relative;
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+.glass-card-effect {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  backdrop-filter: blur(10px);
+  z-index: 0;
+}
+
+.luxury-halo {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 60%; aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: transform 0.2s ease-out;
+}
+
+.main-image-container img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: drop-shadow(0 30px 30px rgba(0,0,0,0.8));
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.thumb {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.thumb.active, .thumb:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.thumb img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-details {
+  padding-top: 1rem;
+}
+
+.product-title {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+.product-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  color: var(--color-ivory);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.product-price {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  color: var(--color-soft-gold);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.product-variants {
+  margin-bottom: 2.5rem;
+}
+
+.product-variants label {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: rgba(239, 232, 223, 0.6);
+  display: block;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.size-options {
+  display: flex;
+  gap: 1rem;
+}
+
+.size-btn {
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--color-ivory);
+  padding: 0.8rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.size-btn.active, .size-btn:hover {
+  border-color: var(--color-champagne);
+  color: var(--color-luxury-black);
+  background: var(--color-champagne);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.quantity-selector {
+  display: flex;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  width: 120px;
+  border-radius: 4px;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-champagne);
+  flex: 1;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s ease;
+}
+
+.qty-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.quantity-selector input {
+  background: transparent;
+  border: none;
+  border-left: 1px solid rgba(212, 175, 55, 0.3);
+  border-right: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-ivory);
+  width: 50px;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  -moz-appearance: textfield;
+}
+
+.quantity-selector input::-webkit-outer-spin-button,
+.quantity-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add-to-cart-btn {
+  flex: 2;
+  background: transparent;
+  border: 1px solid var(--color-champagne);
+  color: var(--color-champagne);
+  padding: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  min-width: 200px;
+}
+
+.add-to-cart-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.buy-it-now-btn {
+  flex: 3;
+  background: var(--color-champagne);
+  border: 1px solid var(--color-champagne);
+  color: var(--color-luxury-black);
+  padding: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-weight: 600;
+  min-width: 100%;
+}
+
+.buy-it-now-btn:hover {
+  background: var(--color-soft-gold);
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+.product-notes-grid {
+  margin-bottom: 3rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.product-notes-grid h4 {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--color-champagne);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.notes-row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.note-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.note-block span {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-ivory);
+  letter-spacing: 0.05em;
+}
+
+.note-block small {
+  display: block;
+  font-family: var(--font-sans);
+  color: rgba(239, 232, 223, 0.6);
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.product-accordion {
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  padding: 1.5rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.accordion-header:hover, .accordion-header.active {
+  color: var(--color-champagne);
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+  color: var(--color-champagne);
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.accordion-content p {
+  padding-bottom: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(239, 232, 223, 0.7);
+}
+
+@media screen and (max-width: 1024px) {
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .main-image-container {
+    padding: 2rem;
+  }
+  .product-title {
+    font-size: 2.5rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Product Subtitle",
+      "default": "EXTRAIT DE PARFUM"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Fragrance Note",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Note Level",
+          "default": "Top Notes"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Ingredients",
+          "default": "Bergamot"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Enter the details here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RISE Product",
+      "blocks": [
+        {
+          "type": "note",
+          "settings": {
+            "title": "Top Notes",
+            "value": "Bergamot"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "title": "Heart Notes",
+            "value": "Rose, Oud"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "title": "Base Notes",
+            "value": "Amber, Musk"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "The Inspiration",
+            "content": "Crafted from the rarest ingredients around the world, this fragrance embodies the spirit of midnight elegance."
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "How to Use",
+            "content": "Apply to pulse points such as the wrists, neck, and behind the ears. Do not rub the fragrance into the skin as this will alter how the fragrance develops."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,165 @@
+<div class="perfumery-finder">
+  <div class="split-section">
+    <!-- Art of Perfumery -->
+    <div class="split-panel art-of-perfumery">
+      <div class="panel-content">
+        <h2>THE ART OF<br>PERFUMERY</h2>
+        <p>Every fragrance tells a story of passion, tradition, and perfection. Crafted in small batches using the world's finest ingredients.</p>
+        <a href="/pages/about" class="panel-link">DISCOVER OUR STORY <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+      </div>
+      <div class="panel-image">
+        <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Art of Perfumery">
+        <button class="play-btn-small"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+      </div>
+    </div>
+
+    <!-- Fragrance Finder -->
+    <div class="split-panel fragrance-finder">
+      <div class="panel-content">
+        <h2>FRAGRANCE FINDER</h2>
+        <p>Find your perfect scent.</p>
+        <button class="quiz-btn">TAKE THE QUIZ</button>
+      </div>
+      <div class="panel-image">
+        <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Fragrance Finder">
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.perfumery-finder {
+  background: var(--color-luxury-black);
+  padding: var(--spacing-md);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.split-panel {
+  background: #0a0a0a;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.panel-content {
+  flex: 1;
+  z-index: 2;
+  padding-right: 2rem;
+}
+
+.panel-content h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+}
+
+.panel-content p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(239, 232, 223, 0.7);
+  margin-bottom: var(--spacing-md);
+}
+
+.panel-link {
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.panel-link:hover {
+  color: var(--color-soft-gold);
+}
+
+.quiz-btn {
+  background: transparent;
+  border: 1px solid var(--color-champagne);
+  color: var(--color-champagne);
+  padding: 0.75rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quiz-btn:hover {
+  background: var(--color-champagne);
+  color: var(--color-luxury-black);
+}
+
+.panel-image {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.panel-image img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: cover;
+}
+
+.play-btn-small {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(5, 5, 5, 0.5);
+  border: 1px solid var(--color-champagne);
+  color: var(--color-champagne);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.play-btn-small:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+@media screen and (max-width: 1024px) {
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Perfumery & Finder",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Perfumery & Finder"
+    }
+  ]
+}
+{% endschema %}

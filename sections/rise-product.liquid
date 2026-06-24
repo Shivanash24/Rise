@@ -6,24 +6,32 @@
       <div class="main-image-container">
         <div class="glass-card-effect"></div>
         <div class="luxury-halo"></div>
-        <img id="MainProductImage" src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1500 }}{% else %}{{ 'luxury_perfume_bottle.png' | asset_url }}{% endif %}" alt="{{ product.title | default: 'NOIR ECLIPSE' }}">
+        {% if product.featured_image %}
+          {{ product.featured_image | image_url: width: 1500 | image_tag: id: 'MainProductImage', alt: product.title }}
+        {% else %}
+          <img id="MainProductImage" src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="{{ product.title | default: 'NOIR ECLIPSE' }}" width="1500" height="1500">
+        {% endif %}
       </div>
       <div class="thumbnail-grid">
         <div class="thumb active" onclick="changeImage(this, '{% if product.featured_image %}{{ product.featured_image | image_url: width: 1500 }}{% else %}{{ 'luxury_perfume_bottle.png' | asset_url }}{% endif %}')">
-          <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 400 }}{% else %}{{ 'luxury_perfume_bottle.png' | asset_url }}{% endif %}" alt="Thumb">
+          {% if product.featured_image %}
+            {{ product.featured_image | image_url: width: 400 | image_tag: alt: 'Thumb' }}
+          {% else %}
+            <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb" width="400" height="400">
+          {% endif %}
         </div>
         {% if product.images.size > 1 %}
           {% for image in product.images offset: 1 %}
             <div class="thumb" onclick="changeImage(this, '{{ image | image_url: width: 1500 }}')">
-              <img src="{{ image | image_url: width: 400 }}" alt="Thumb">
+              {{ image | image_url: width: 400 | image_tag: alt: 'Thumb' }}
             </div>
           {% endfor %}
         {% else %}
           <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_lifestyle.png' | asset_url }}')">
-            <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Thumb">
+            <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Thumb" width="400" height="400">
           </div>
           <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_bottle.png' | asset_url }}')">
-            <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb" style="filter: sepia(0.5);">
+            <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb" style="filter: sepia(0.5);" width="400" height="400">
           </div>
         {% endif %}
       </div>

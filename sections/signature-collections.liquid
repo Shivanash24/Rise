@@ -42,7 +42,7 @@
             {% elsif block.settings.image %}
               {{ block.settings.image | image_url: width: 800 | image_tag: class: 'card-campaign-fallback-img', loading: 'lazy' }}
             {% else %}
-              <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.title }}" class="card-campaign-fallback-img" loading="lazy">
+              <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.title }}" class="card-campaign-fallback-img" loading="lazy" width="800" height="800">
             {% endif %}
           </div>
           <div class="card-glow-overlay"></div>
@@ -440,16 +440,18 @@
 
 @media screen and (max-width: 768px) {
   .signature-collections-section {
-    padding: 4rem 1rem 3rem 1rem;
+    padding: 3rem 1rem 2rem 1rem;
   }
   .collections-header-wrapper {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
   .collections-grid-wrapper {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    gap: 1.5rem;
   }
   .collections-trust-bar {
-    padding-top: 3rem;
+    padding-top: 2rem;
+    gap: 1.5rem;
   }
 }
 </style>

@@ -11,7 +11,7 @@
         {% if section.settings.art_image %}
           {{ section.settings.art_image | image_url: width: 600 | image_tag }}
         {% else %}
-          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Art of Perfumery">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Art of Perfumery" width="800" height="800">
         {% endif %}
       </div>
     </div>
@@ -27,7 +27,7 @@
         {% if section.settings.finder_image %}
           {{ section.settings.finder_image | image_url: width: 600 | image_tag }}
         {% else %}
-          <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Fragrance Finder">
+          <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Fragrance Finder" width="800" height="800">
         {% endif %}
       </div>
     </div>

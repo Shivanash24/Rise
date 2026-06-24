@@ -9,7 +9,9 @@
       {%- for article in blog.articles -%}
         <article class="blog-card">
           <a href="{{ article.url }}" class="blog-image">
-            <img src="{{ article.image | img_url: '1024x1024' }}" alt="{{ article.title }}">
+            {% if article.image %}
+              {{ article.image | image_url: width: 1024 | image_tag: class: 'article-image', alt: article.title }}
+            {% endif %}
           </a>
           <div class="blog-content">
             <span class="blog-date">{{ article.published_at | time_tag: format: 'date' }}</span>
@@ -23,7 +25,7 @@
       <!-- Mockup Articles if none exist -->
       <article class="blog-card">
         <a href="#" class="blog-image">
-          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="The Art of Extraction">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="The Art of Extraction" width="800" height="800">
         </a>
         <div class="blog-content">
           <span class="blog-date">OCTOBER 15, 2024</span>
@@ -35,7 +37,7 @@
 
       <article class="blog-card">
         <a href="#" class="blog-image">
-          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Understanding Oud" style="filter: grayscale(1);">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Understanding Oud" style="filter: grayscale(1);" width="800" height="800">
         </a>
         <div class="blog-content">
           <span class="blog-date">SEPTEMBER 28, 2024</span>
@@ -47,7 +49,7 @@
       
       <article class="blog-card">
         <a href="#" class="blog-image">
-          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Layering Fragrances" style="filter: sepia(0.5);">
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Layering Fragrances" style="filter: sepia(0.5);" width="800" height="800">
         </a>
         <div class="blog-content">
           <span class="blog-date">SEPTEMBER 10, 2024</span>

@@ -16,9 +16,9 @@
   <div class="hero-image-container" id="hero-tilt-container">
     <div class="hero-image-inner" id="hero-tilt-inner">
       {% if section.settings.hero_image %}
-        {{ section.settings.hero_image | image_url: width: 1500 | image_tag: class: 'hero-image' }}
+        {{ section.settings.hero_image | image_url: width: 1500 | image_tag: widths: '375, 550, 750, 1100, 1500', sizes: '100vw', fetchpriority: 'high', class: 'hero-image' }}
       {% else %}
-        <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Luxury Perfume" class="hero-image">
+        <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Luxury Perfume" class="hero-image" width="1500" height="1500">
       {% endif %}
     </div>
   </div>
@@ -153,6 +153,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .ultimate-hero {
+    height: 70vh;
+  }
+
   .hero-content {
     top: 20%;
     left: 5%;
@@ -164,8 +168,9 @@
   }
 
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     text-align: center;
+    margin-bottom: 0.5rem;
   }
 
   .hero-subtitle {
@@ -184,8 +189,8 @@
 
   .hero-image-inner {
     width: 100%;
-    height: 55%;
-    margin-bottom: 2rem;
+    height: 50%;
+    margin-bottom: 3rem;
   }
 }
 </style>

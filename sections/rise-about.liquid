@@ -24,15 +24,15 @@
       {% if section.settings.image %}
         {{ section.settings.image | image_url: width: 1200 | image_tag: alt: section.settings.heading }}
       {% else %}
-        <img src="{{ 'luxury_perfume_1.png' | asset_url }}" alt="Master Perfumer at work">
+        <img src="{{ 'luxury_perfume_1.png' | asset_url }}" alt="Master Perfumer at work" width="800" height="800">
       {% endif %}
     </div>
     <div class="collage-side">
       <div class="collage-item collage-item-sub shine-effect">
-        <img src="{{ 'luxury_ingredients_1.png' | asset_url }}" alt="Premium Ingredients">
+        <img src="{{ 'luxury_ingredients_1.png' | asset_url }}" alt="Premium Ingredients" width="800" height="800">
       </div>
       <div class="collage-item collage-item-sub shine-effect">
-        <img src="{{ 'luxury_artisan_1.png' | asset_url }}" alt="Artisan Process">
+        <img src="{{ 'luxury_artisan_1.png' | asset_url }}" alt="Artisan Process" width="800" height="800">
       </div>
     </div>
   </div>

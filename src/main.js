@@ -56,6 +56,9 @@ function initHero3D() {
 }
 
 function initLeft3DBackground() {
+  // Disable heavy 3D background on mobile for performance
+  if (window.innerWidth <= 768) return;
+  
   const container = document.getElementById('hero-left-3d');
   if (!container) return;
 
@@ -277,7 +280,9 @@ function initSignatureCollections() {
     }
   });
 
-  // 2. Three.js scenes for each card
+  // 2. Three.js scenes for each card (Disable on mobile)
+  if (window.innerWidth <= 768) return;
+  
   cards.forEach(card => {
     const container = card.querySelector('.card-canvas-container');
     if (!container) return;

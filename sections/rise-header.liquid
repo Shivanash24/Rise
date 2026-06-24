@@ -15,8 +15,8 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
       <ul>
-        <li><a href="/">HOME</a></li>
-        <li><a href="/collections/all">COLLECTION</a></li>
+        <li><a href="{{ routes.root_url }}">HOME</a></li>
+        <li><a href="{{ routes.all_products_collection_url }}">COLLECTION</a></li>
         <li><a href="/?view=about">OUR STORY</a></li>
         <li><a href="/pages/contact">CONTACT</a></li>
       </ul>
@@ -24,13 +24,22 @@
 
     <div class="rise-icons">
       <div class="header-search-container">
-        <form action="{{ routes.search_url }}" method="get" class="header-search-form" onsubmit="return this.q.value.trim() !== '';">
-          <input type="search" name="q" placeholder="SEARCH..." class="header-search-input" id="HeaderSearchInput">
-          <input type="hidden" name="options[prefix]" value="last">
-          <button type="button" class="icon-search" aria-label="Search" onclick="var input = document.getElementById('HeaderSearchInput'); if(input.value.trim() !== '') { this.form.submit(); } else { input.focus(); }">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </button>
-        </form>
+        <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+        {{ 'component-predictive-search.css' | asset_url | stylesheet_tag }}
+        <predictive-search data-loading-text="Loading...">
+          <form action="{{ routes.search_url }}" method="get" class="header-search-form" role="search">
+            <input type="search" name="q" placeholder="SEARCH..." class="header-search-input" id="HeaderSearchInput" role="combobox" aria-expanded="false" aria-owns="predictive-search-results" aria-controls="predictive-search-results" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false">
+            <input type="hidden" name="options[prefix]" value="last">
+            <button type="button" class="icon-search" aria-label="Search" onclick="var input = document.getElementById('HeaderSearchInput'); if(input.value.trim() !== '') { this.form.submit(); } else { input.focus(); }">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </form>
+          <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+            {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+          </div>
+          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+        </predictive-search>
       </div>
       <a href="{{ routes.account_url }}" class="icon-account">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -141,6 +150,46 @@
   border-bottom: 1px solid var(--color-champagne);
   opacity: 1;
   margin-right: 0.5rem;
+}
+
+predictive-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.predictive-search--header {
+  background-color: var(--color-luxury-black, #050505) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+  width: 350px !important;
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 8px !important;
+  top: calc(100% + 1rem) !important;
+  padding: 1rem !important;
+}
+
+.predictive-search__item {
+  color: var(--color-ivory, #EFE8DF) !important;
+}
+
+.predictive-search__item:hover, .predictive-search__item[aria-selected="true"] {
+  background-color: rgba(212, 175, 55, 0.1) !important;
+  color: var(--color-champagne, #D4AF37) !important;
+}
+
+.predictive-search__heading {
+  color: var(--color-champagne, #D4AF37) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+}
+
+.predictive-search__item-vendor {
+  color: rgba(239, 232, 223, 0.6) !important;
+}
+
+.predictive-search__item .price {
+  color: var(--color-soft-gold, #C5A059) !important;
 }
 
 .icon-search {

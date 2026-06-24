@@ -3,12 +3,16 @@
     <!-- Art of Perfumery -->
     <div class="split-panel art-of-perfumery">
       <div class="panel-content">
-        <h2>THE ART OF<br>PERFUMERY</h2>
-        <p>Every fragrance tells a story of passion, tradition, and perfection. Crafted in small batches using the world's finest ingredients.</p>
-        <a href="/pages/about" class="panel-link">DISCOVER OUR STORY <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+        <h2>{{ section.settings.art_title | default: 'THE ART OF<br>PERFUMERY' | newline_to_br }}</h2>
+        <p>{{ section.settings.art_text | default: "Every fragrance tells a story of passion, tradition, and perfection. Crafted in small batches using the world's finest ingredients." }}</p>
+        <a href="{{ section.settings.art_link | default: '/?view=about' }}" class="panel-link">{{ section.settings.art_link_text | default: 'DISCOVER OUR STORY' }} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
       </div>
       <div class="panel-image">
-        <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Art of Perfumery">
+        {% if section.settings.art_image %}
+          {{ section.settings.art_image | image_url: width: 600 | image_tag }}
+        {% else %}
+          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Art of Perfumery">
+        {% endif %}
         <button class="play-btn-small"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
       </div>
     </div>
@@ -16,12 +20,16 @@
     <!-- Fragrance Finder -->
     <div class="split-panel fragrance-finder">
       <div class="panel-content">
-        <h2>FRAGRANCE FINDER</h2>
-        <p>Find your perfect scent.</p>
-        <button class="quiz-btn">TAKE THE QUIZ</button>
+        <h2>{{ section.settings.finder_title | default: 'FRAGRANCE FINDER' | newline_to_br }}</h2>
+        <p>{{ section.settings.finder_text | default: 'Find your perfect scent.' }}</p>
+        <a href="{{ section.settings.finder_link | default: '/collections/all' }}" class="quiz-btn" style="text-decoration:none; display:inline-block;">{{ section.settings.finder_link_text | default: 'VIEW COLLECTION' }}</a>
       </div>
       <div class="panel-image">
-        <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Fragrance Finder">
+        {% if section.settings.finder_image %}
+          {{ section.settings.finder_image | image_url: width: 600 | image_tag }}
+        {% else %}
+          <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Fragrance Finder">
+        {% endif %}
       </div>
     </div>
   </div>
@@ -155,7 +163,72 @@
 {% schema %}
 {
   "name": "Perfumery & Finder",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Art of Perfumery Panel"
+    },
+    {
+      "type": "textarea",
+      "id": "art_title",
+      "label": "Heading",
+      "default": "THE ART OF\nPERFUMERY"
+    },
+    {
+      "type": "textarea",
+      "id": "art_text",
+      "label": "Text",
+      "default": "Every fragrance tells a story of passion, tradition, and perfection. Crafted in small batches using the world's finest ingredients."
+    },
+    {
+      "type": "text",
+      "id": "art_link_text",
+      "label": "Link Text",
+      "default": "DISCOVER OUR STORY"
+    },
+    {
+      "type": "url",
+      "id": "art_link",
+      "label": "Link URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "art_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Fragrance Finder Panel"
+    },
+    {
+      "type": "textarea",
+      "id": "finder_title",
+      "label": "Heading",
+      "default": "FRAGRANCE FINDER"
+    },
+    {
+      "type": "textarea",
+      "id": "finder_text",
+      "label": "Text",
+      "default": "Find your perfect scent."
+    },
+    {
+      "type": "text",
+      "id": "finder_link_text",
+      "label": "Button Text",
+      "default": "VIEW COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "finder_link",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "finder_image",
+      "label": "Image"
+    }
+  ],
   "presets": [
     {
       "name": "Perfumery & Finder"

@@ -128,7 +128,47 @@
       "type": "perfumery-finder"
     },
     "fragrance_notes_bar": {
-      "type": "fragrance-notes-bar"
+      "type": "fragrance-notes-bar",
+      "blocks": {
+        "note_1": {
+          "type": "note",
+          "settings": {
+            "icon": "top",
+            "title": "TOP NOTES",
+            "text": "The first impression"
+          }
+        },
+        "note_2": {
+          "type": "note",
+          "settings": {
+            "icon": "heart",
+            "title": "HEART NOTES",
+            "text": "The soul of the fragrance"
+          }
+        },
+        "note_3": {
+          "type": "note",
+          "settings": {
+            "icon": "base",
+            "title": "BASE NOTES",
+            "text": "The lasting memory"
+          }
+        },
+        "note_4": {
+          "type": "note",
+          "settings": {
+            "icon": "quality",
+            "title": "EXTRAIT QUALITY",
+            "text": "40% Pure Perfume Oil"
+          }
+        }
+      },
+      "block_order": [
+        "note_1",
+        "note_2",
+        "note_3",
+        "note_4"
+      ]
     }
   },
   "order": [

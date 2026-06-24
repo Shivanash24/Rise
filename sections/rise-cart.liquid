@@ -35,7 +35,7 @@
                   <td class="cart-item-quantity">
                     <div class="quantity-selector">
                       <button type="button" class="qty-btn" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.dispatchEvent(new Event('change'))">-</button>
-                      <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" onchange="document.getElementById('cart-form').submit();">
+                      <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" onchange="document.getElementById('update-cart-btn').click();">
                       <button type="button" class="qty-btn" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.dispatchEvent(new Event('change'))">+</button>
                     </div>
                   </td>
@@ -55,6 +55,7 @@
             <span>{{ cart.total_price | money }}</span>
           </div>
           <p class="taxes-note">Taxes and shipping calculated at checkout.</p>
+          <button type="submit" name="update" id="update-cart-btn" style="display: none;">Update</button>
           <button type="submit" name="checkout" class="checkout-btn">CHECKOUT</button>
         </div>
       </div>

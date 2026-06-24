@@ -1,0 +1,194 @@
+<div class="rise-premium-page">
+  <div class="premium-container">
+    <h1 class="page-title">{{ page.title | default: 'Returns & Exchanges' }}</h1>
+    <p class="page-subtitle">We stand behind our craftsmanship. If you are not entirely satisfied, we are here to help.</p>
+
+    <div class="returns-container">
+      <div class="returns-policy">
+        <h2>Our 30-Day Guarantee</h2>
+        <p>We accept returns on all unopened and unused products within 30 days of delivery. Due to the delicate nature of our fragrances and for hygiene purposes, we cannot accept returns on bottles that have been opened or sprayed, unless the item is defective or damaged during transit.</p>
+        
+        <div class="returns-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h4>Request a Return</h4>
+            <p>Contact our concierge team at support@riseperfume.com with your order number.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h4>Pack Carefully</h4>
+            <p>Place the item in its original, pristine packaging along with any included accessories.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h4>Ship It Back</h4>
+            <p>Attach the provided return label and drop it off at your nearest carrier location.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="returns-faq">
+        <h3>Common Questions</h3>
+        <ul class="returns-list">
+          <li>
+            <strong>Do I have to pay for return shipping?</strong>
+            <p>Return shipping is complimentary for defective items. For all other returns, a flat fee of $8.00 will be deducted from your refund.</p>
+          </li>
+          <li>
+            <strong>When will I receive my refund?</strong>
+            <p>Once your return is received and inspected, we will notify you. Approved refunds are processed within 5-7 business days back to your original payment method.</p>
+          </li>
+          <li>
+            <strong>Can I exchange a gift?</strong>
+            <p>Absolutely. Gifts can be exchanged for store credit. Please contact us with the order details to initiate a gift exchange.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.rise-premium-page {
+  background-color: var(--color-luxury-black);
+  color: var(--color-warm-beige);
+  padding: 120px 0 80px;
+  min-height: 80vh;
+}
+
+.page-title {
+  text-align: center;
+  font-family: var(--font-serif);
+  color: var(--color-champagne);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  text-align: center;
+  font-family: var(--font-sans);
+  color: rgba(239, 232, 223, 0.7);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.returns-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 4rem;
+}
+
+.returns-policy h2, .returns-faq h3 {
+  font-family: var(--font-serif);
+  color: var(--color-ivory);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.returns-policy p {
+  color: rgba(239, 232, 223, 0.8);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 3rem;
+}
+
+.returns-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: rgba(10, 10, 10, 0.4);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 2px solid var(--color-soft-gold);
+}
+
+.step-number {
+  background: var(--color-champagne);
+  color: var(--color-luxury-black);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: var(--font-sans);
+  flex-shrink: 0;
+}
+
+.step h4 {
+  color: var(--color-champagne);
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.step p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(239, 232, 223, 0.7);
+}
+
+.returns-faq {
+  background: rgba(212, 175, 55, 0.05);
+  padding: 2.5rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.returns-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.returns-list li {
+  margin-bottom: 2rem;
+}
+
+.returns-list li:last-child {
+  margin-bottom: 0;
+}
+
+.returns-list strong {
+  display: block;
+  color: var(--color-champagne);
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.returns-list p {
+  color: rgba(239, 232, 223, 0.7);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .returns-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Returns",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Returns"
+    }
+  ]
+}
+{% endschema %}

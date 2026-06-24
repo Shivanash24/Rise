@@ -20,8 +20,13 @@
       <a href="{{ routes.account_url }}" class="icon-account">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
       </a>
-      <a href="{{ routes.cart_url }}" class="icon-cart">
+      <a href="{{ routes.cart_url }}" class="icon-cart" id="cart-icon-bubble">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        {% if cart != empty and cart.item_count > 0 %}
+          <div class="cart-count-bubble">
+            <span aria-hidden="true">{{ cart.item_count }}</span>
+          </div>
+        {% endif %}
       </a>
     </div>
   </div>
@@ -86,10 +91,28 @@
 .rise-icons a {
   color: var(--color-ivory);
   transition: color 0.3s ease;
+  position: relative;
 }
 
 .rise-icons a:hover {
   color: var(--color-soft-gold);
+}
+
+.cart-count-bubble {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-champagne);
+  color: var(--color-luxury-black);
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  font-family: var(--font-sans);
 }
 </style>
 

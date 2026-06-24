@@ -29,8 +29,17 @@
           {% if block.settings.scent == 'amber' %}{% assign fallback_img = 'velvet_amber_campaign.png' %}{% endif %}
           {% if block.settings.scent == 'rose' %}{% assign fallback_img = 'midnight_rose_campaign.png' %}{% endif %}
           
-          <div class="card-canvas-container" data-image-url="{% if block.settings.image %}{{ block.settings.image | image_url }}{% else %}{{ fallback_img | asset_url }}{% endif %}" data-scent="{{ block.settings.scent | default: 'gold' }}">
-            {% if block.settings.image %}
+          {% assign final_img_url = fallback_img | asset_url %}
+          {% if block.settings.product != blank and block.settings.product.featured_image %}
+            {% assign final_img_url = block.settings.product.featured_image | image_url %}
+          {% elsif block.settings.image %}
+            {% assign final_img_url = block.settings.image | image_url %}
+          {% endif %}
+          
+          <div class="card-canvas-container" data-image-url="{{ final_img_url }}" data-scent="{{ block.settings.scent | default: 'gold' }}">
+            {% if block.settings.product != blank and block.settings.product.featured_image %}
+              {{ block.settings.product.featured_image | image_url: width: 800 | image_tag: class: 'card-campaign-fallback-img', loading: 'lazy' }}
+            {% elsif block.settings.image %}
               {{ block.settings.image | image_url: width: 800 | image_tag: class: 'card-campaign-fallback-img', loading: 'lazy' }}
             {% else %}
               <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.title }}" class="card-campaign-fallback-img" loading="lazy">
@@ -40,11 +49,11 @@
         </div>
         <div class="card-info-luxury">
           <span class="perfume-type">{{ block.settings.type_text }}</span>
-          <h4 class="perfume-name">{{ block.settings.title }}</h4>
+          <h4 class="perfume-name">{% if block.settings.product != blank %}{{ block.settings.product.title }}{% else %}{{ block.settings.title }}{% endif %}</h4>
           <p class="perfume-desc">{{ block.settings.description }}</p>
           <div class="card-footer-luxe">
-            <span class="perfume-price">{{ block.settings.price_text }}</span>
-            <a href="{{ block.settings.link | default: '#' }}" class="explore-btn-luxe">
+            <span class="perfume-price">{% if block.settings.product != blank %}{{ block.settings.product.price | money }}{% else %}{{ block.settings.price_text }}{% endif %}</span>
+            <a href="{% if block.settings.product != blank %}{{ block.settings.product.url }}{% else %}{{ block.settings.link | default: '#' }}{% endif %}" class="explore-btn-luxe">
               <span class="btn-text">{{ block.settings.btn_text }}</span>
               <span class="btn-line"></span>
             </a>
@@ -459,9 +468,14 @@
       "name": "Collection Card",
       "settings": [
         {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product (Overrides image and link)"
+        },
+        {
           "type": "image_picker",
           "id": "image",
-          "label": "Product Image"
+          "label": "Fallback Product Image"
         },
         {
           "type": "select",

@@ -1,0 +1,131 @@
+<div class="rise-premium-page">
+  <div class="premium-container">
+    <h1 class="page-title">{{ page.title | default: 'Frequently Asked Questions' }}</h1>
+    <p class="page-subtitle">Find answers to common questions about our fragrances, orders, and more.</p>
+
+    <div class="faq-accordion">
+      {% for i in (1..5) %}
+        {% capture question %}
+          {% case i %}
+            {% when 1 %}How long does shipping take?
+            {% when 2 %}Are your fragrances cruelty-free?
+            {% when 3 %}Can I return an opened bottle?
+            {% when 4 %}How should I store my perfume?
+            {% when 5 %}Do you ship internationally?
+          {% endcase %}
+        {% endcapture %}
+        
+        {% capture answer %}
+          {% case i %}
+            {% when 1 %}All orders are processed within 24 hours. Standard domestic shipping typically takes 3-5 business days, while expedited options are available at checkout.
+            {% when 2 %}Yes, all RISE fragrances are 100% cruelty-free. We do not test on animals at any stage of product development.
+            {% when 3 %}We accept returns on unopened items within 30 days of delivery. For hygiene reasons, we cannot accept returns on opened fragrances unless there is a defect.
+            {% when 4 %}For optimal longevity, store your fragrance in a cool, dry place away from direct sunlight and extreme temperature changes.
+            {% when 5 %}Currently, we ship to the US and Canada. We are actively working on expanding our shipping destinations globally.
+          {% endcase %}
+        {% endcapture %}
+        
+        <details class="faq-item">
+          <summary>
+            <span>{{ question }}</span>
+            <span class="faq-icon">+</span>
+          </summary>
+          <div class="faq-content">
+            <p>{{ answer }}</p>
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.rise-premium-page {
+  background-color: var(--color-luxury-black);
+  color: var(--color-warm-beige);
+  padding: 120px 0 80px;
+  min-height: 80vh;
+}
+
+.page-title {
+  text-align: center;
+  font-family: var(--font-serif);
+  color: var(--color-champagne);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  text-align: center;
+  font-family: var(--font-sans);
+  color: rgba(239, 232, 223, 0.7);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--color-ivory);
+  transition: color 0.3s ease;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item:hover summary {
+  color: var(--color-soft-gold);
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: var(--color-champagne);
+  transition: transform 0.3s ease;
+}
+
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-content {
+  padding-bottom: 1.5rem;
+  color: rgba(239, 232, 223, 0.8);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-size: 1rem;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE FAQ",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE FAQ"
+    }
+  ]
+}
+{% endschema %}

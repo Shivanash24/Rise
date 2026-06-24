@@ -109,8 +109,16 @@
                     <h3 class="card__heading"><a href="{{ product.url }}">{{ product.title }}</a></h3>
                     <p class="product-price price price-item">{{ product.price | money }}</p>
                   </div>
+                  {% assign product_form_id = 'quick-add-' | append: section.id | append: product.id %}
                   <div class="quick-add">
-                    <button class="quick-add__submit">ADD TO CART</button>
+                    <product-form data-section-id="{{ section.id }}">
+                      {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" class="product-variant-id">
+                        <button type="submit" name="add" class="quick-add__submit" aria-haspopup="dialog" aria-labelledby="{{ product_form_id }}-submit" aria-live="polite">
+                          <span>ADD TO CART</span>
+                        </button>
+                      {%- endform -%}
+                    </product-form>
                   </div>
                 </div>
               </div>

@@ -6,18 +6,26 @@
       <div class="main-image-container">
         <div class="glass-card-effect"></div>
         <div class="luxury-halo"></div>
-        <img id="MainProductImage" src="{{ product.featured_image | img_url: 'master' | default: 'luxury_perfume_bottle.png' | asset_url }}" alt="{{ product.title | default: 'NOIR ECLIPSE' }}">
+        <img id="MainProductImage" src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 1500 }}{% else %}{{ 'luxury_perfume_bottle.png' | asset_url }}{% endif %}" alt="{{ product.title | default: 'NOIR ECLIPSE' }}">
       </div>
       <div class="thumbnail-grid">
-        <div class="thumb active" onclick="changeImage(this, '{{ product.featured_image | img_url: 'master' | default: 'luxury_perfume_bottle.png' | asset_url }}')">
-          <img src="{{ product.featured_image | img_url: 'medium' | default: 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb">
+        <div class="thumb active" onclick="changeImage(this, '{% if product.featured_image %}{{ product.featured_image | image_url: width: 1500 }}{% else %}{{ 'luxury_perfume_bottle.png' | asset_url }}{% endif %}')">
+          <img src="{% if product.featured_image %}{{ product.featured_image | image_url: width: 400 }}{% else %}{{ 'luxury_perfume_bottle.png' | asset_url }}{% endif %}" alt="Thumb">
         </div>
-        <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_lifestyle.png' | asset_url }}')">
-          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Thumb">
-        </div>
-        <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_bottle.png' | asset_url }}')">
-          <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb" style="filter: sepia(0.5);">
-        </div>
+        {% if product.images.size > 1 %}
+          {% for image in product.images offset: 1 %}
+            <div class="thumb" onclick="changeImage(this, '{{ image | image_url: width: 1500 }}')">
+              <img src="{{ image | image_url: width: 400 }}" alt="Thumb">
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_lifestyle.png' | asset_url }}')">
+            <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Thumb">
+          </div>
+          <div class="thumb" onclick="changeImage(this, '{{ 'luxury_perfume_bottle.png' | asset_url }}')">
+            <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Thumb" style="filter: sepia(0.5);">
+          </div>
+        {% endif %}
       </div>
     </div>
 
@@ -30,16 +38,19 @@
         {{ product.price | default: 25000 | money }}
       </div>
 
-      <form action="{{ routes.cart_add_url | default: '/cart/add' }}" method="post" id="product-form-installment" class="form">
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: 123456789 }}">
+      {% form 'product', product, id: 'add-to-cart-form', class: 'form', novalidate: 'novalidate' %}
+        <input type="hidden" name="id" id="product-variant-id" value="{{ product.selected_or_first_available_variant.id }}">
         
-        <div class="product-variants">
-          <label>Select Size</label>
-          <div class="size-options">
-            <button type="button" class="size-btn active">50ml</button>
-            <button type="button" class="size-btn">100ml</button>
+        {% unless product.has_only_default_variant %}
+          <div class="product-variants">
+            <label>Select Size</label>
+            <div class="size-options">
+              {% for variant in product.variants %}
+                <button type="button" class="size-btn {% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %}" onclick="selectVariant(this, '{{ variant.id }}')">{{ variant.title }}</button>
+              {% endfor %}
+            </div>
           </div>
-        </div>
+        {% endunless %}
 
         <div class="product-actions">
           <div class="quantity-selector">
@@ -49,9 +60,9 @@
           </div>
           
           <button type="submit" name="add" class="add-to-cart-btn">ADD TO CART</button>
-          <button type="button" class="buy-it-now-btn">BUY IT NOW</button>
+          <button type="button" class="buy-it-now-btn" onclick="document.getElementById('add-to-cart-form').insertAdjacentHTML('beforeend', '<input type=\'hidden\' name=\'return_to\' value=\'/checkout\'>'); document.getElementById('add-to-cart-form').submit();">BUY IT NOW</button>
         </div>
-      </form>
+      {% endform %}
 
       <!-- Fragrance Notes (Dynamic Blocks) -->
       <div class="product-notes-grid">
@@ -94,6 +105,12 @@
     document.getElementById('MainProductImage').src = src;
     document.querySelectorAll('.thumbnail-grid .thumb').forEach(el => el.classList.remove('active'));
     element.classList.add('active');
+  }
+
+  function selectVariant(button, id) {
+    document.getElementById('product-variant-id').value = id;
+    document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
   }
 
   function updateQuantity(change) {

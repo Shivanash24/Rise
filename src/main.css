@@ -152,3 +152,24 @@ p {
 .select__select {
   font-size: 1.1rem !important;
 }
+
+/* Policy Pages Fixes */
+.shopify-policy__container {
+  padding-top: 150px !important;
+}
+
+.shopify-policy__body,
+.shopify-policy__body p,
+.shopify-policy__body li {
+  font-size: 0.95rem !important;
+}
+
+.shopify-policy__title {
+  font-size: clamp(2.5rem, 4vw + 1rem, 4rem) !important;
+}
+
+/* Hide duplicate heading if added inside the policy body */
+.shopify-policy__body h1:first-child,
+.shopify-policy__body h2:first-child {
+  display: none;
+}

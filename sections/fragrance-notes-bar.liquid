@@ -1,50 +1,34 @@
-<div class="fragrance-notes-bar">
+<div class="fragrance-notes-bar" style="background-color: {{ section.settings.bg_color }};">
   <div class="notes-container">
-    <div class="note-item">
-      <div class="note-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h4M12 2a10 10 0 0 0-10 10v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H2"></path></svg>
+    {% for block in section.blocks %}
+      <div class="note-item" {{ block.shopify_attributes }}>
+        <div class="note-icon">
+          {% case block.settings.icon %}
+            {% when 'top' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h4M12 2a10 10 0 0 0-10 10v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H2"></path></svg>
+            {% when 'heart' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            {% when 'base' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            {% when 'quality' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            {% when 'leaf' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><line x1="2" y1="22" x2="11" y2="20"></line></svg>
+            {% when 'shield' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          {% endcase %}
+        </div>
+        <div class="note-text">
+          <h4>{{ block.settings.title }}</h4>
+          <p>{{ block.settings.text }}</p>
+        </div>
       </div>
-      <div class="note-text">
-        <h4>TOP NOTES</h4>
-        <p>The first impression</p>
-      </div>
-    </div>
-    
-    <div class="note-item">
-      <div class="note-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-      </div>
-      <div class="note-text">
-        <h4>HEART NOTES</h4>
-        <p>The soul of the fragrance</p>
-      </div>
-    </div>
-
-    <div class="note-item">
-      <div class="note-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-      </div>
-      <div class="note-text">
-        <h4>BASE NOTES</h4>
-        <p>The lasting memory</p>
-      </div>
-    </div>
-
-    <div class="note-item">
-      <div class="note-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-      </div>
-      <div class="note-text">
-        <h4>EXTRAIT QUALITY</h4>
-        <p>40% Pure Perfume Oil</p>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 
 <style>
 .fragrance-notes-bar {
-  background: var(--color-luxury-black);
   padding: var(--spacing-lg) 0;
   border-top: 1px solid rgba(212, 175, 55, 0.1);
   border-bottom: 1px solid rgba(212, 175, 55, 0.1);
@@ -64,7 +48,23 @@
 .note-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+  background: transparent;
+}
+
+.note-item:hover {
+  background: rgba(212, 175, 55, 0.05);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.note-item:hover .note-icon {
+  transform: scale(1.15);
+  color: var(--color-champagne);
 }
 
 .note-icon {
@@ -72,32 +72,92 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.4s ease, color 0.4s ease;
 }
 
 .note-text h4 {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   letter-spacing: 0.15em;
   color: var(--color-ivory);
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.35rem 0;
+  text-transform: uppercase;
 }
 
 .note-text p {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: rgba(239, 232, 223, 0.5);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(239, 232, 223, 0.65);
   margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .notes-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .note-item {
+    width: 100%;
+  }
 }
 </style>
 
 {% schema %}
 {
   "name": "Fragrance Notes Bar",
-  "settings": [],
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#050505"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Note Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "top", "label": "Top Notes (Drop)" },
+            { "value": "heart", "label": "Heart Notes (Heart)" },
+            { "value": "base", "label": "Base Notes (Circle)" },
+            { "value": "quality", "label": "Quality (Star)" },
+            { "value": "leaf", "label": "Leaf (Natural)" },
+            { "value": "shield", "label": "Shield (Guarantee)" }
+          ],
+          "default": "top"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "TOP NOTES"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Subtext",
+          "default": "The first impression"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Fragrance Notes Bar"
+      "name": "Fragrance Notes Bar",
+      "blocks": [
+        { "type": "note", "settings": { "icon": "top", "title": "TOP NOTES", "text": "The first impression" } },
+        { "type": "note", "settings": { "icon": "heart", "title": "HEART NOTES", "text": "The soul of the fragrance" } },
+        { "type": "note", "settings": { "icon": "base", "title": "BASE NOTES", "text": "The lasting memory" } },
+        { "type": "note", "settings": { "icon": "quality", "title": "EXTRAIT QUALITY", "text": "40% Pure Perfume Oil" } }
+      ]
     }
   ]
 }

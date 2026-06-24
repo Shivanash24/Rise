@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "rise-shipping"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

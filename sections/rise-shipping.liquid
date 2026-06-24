@@ -1,0 +1,153 @@
+<div class="rise-premium-page">
+  <div class="premium-container">
+    <h1 class="page-title">{{ page.title | default: 'Shipping Policy' }}</h1>
+    <p class="page-subtitle">We craft every bottle with care and deliver it with the same attention to detail.</p>
+
+    <div class="shipping-grid">
+      <div class="shipping-card">
+        <div class="shipping-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        </div>
+        <h3>Standard Shipping</h3>
+        <p class="shipping-time">3-5 Business Days</p>
+        <p class="shipping-cost">Free on orders over $150</p>
+        <p class="shipping-desc">Our standard delivery is fully tracked. A signature may be required upon receipt to ensure your luxury item arrives safely.</p>
+      </div>
+
+      <div class="shipping-card">
+        <div class="shipping-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <h3>Express Delivery</h3>
+        <p class="shipping-time">1-2 Business Days</p>
+        <p class="shipping-cost">$25.00</p>
+        <p class="shipping-desc">For those who simply cannot wait. Order before 1PM EST for next business day delivery in most metropolitan areas.</p>
+      </div>
+
+      <div class="shipping-card">
+        <div class="shipping-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </div>
+        <h3>International</h3>
+        <p class="shipping-time">7-14 Business Days</p>
+        <p class="shipping-cost">Calculated at checkout</p>
+        <p class="shipping-desc">We currently ship to select countries. Please note that duties and taxes are the responsibility of the recipient.</p>
+      </div>
+    </div>
+    
+    <div class="shipping-notes">
+      <h4>Order Processing</h4>
+      <p>All orders are processed within 24 hours (excluding weekends and holidays) after receiving your order confirmation email. You will receive another notification when your order has shipped.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.rise-premium-page {
+  background-color: var(--color-luxury-black);
+  color: var(--color-warm-beige);
+  padding: 120px 0 80px;
+  min-height: 80vh;
+}
+
+.page-title {
+  text-align: center;
+  font-family: var(--font-serif);
+  color: var(--color-champagne);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  text-align: center;
+  font-family: var(--font-sans);
+  color: rgba(239, 232, 223, 0.7);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+}
+
+.shipping-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.shipping-card {
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.shipping-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.shipping-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-soft-gold);
+}
+
+.shipping-card h3 {
+  color: var(--color-ivory);
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.shipping-time {
+  color: var(--color-champagne);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.shipping-cost {
+  color: var(--color-soft-gold);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.shipping-desc {
+  color: rgba(239, 232, 223, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.shipping-notes {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.shipping-notes h4 {
+  color: var(--color-champagne);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.shipping-notes p {
+  color: rgba(239, 232, 223, 0.8);
+  line-height: 1.6;
+}
+</style>
+
+{% schema %}
+{
+  "name": "RISE Shipping",
+  "settings": [],
+  "presets": [
+    {
+      "name": "RISE Shipping"
+    }
+  ]
+}
+{% endschema %}

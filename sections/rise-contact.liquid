@@ -5,18 +5,21 @@
   </div>
 
   <div class="contact-layout">
-    <div class="contact-info">
-      <h3>CLIENT CONCIERGE</h3>
-      <p>Available Monday to Friday, 9:00 AM to 6:00 PM (EST).</p>
-      
-      <div class="info-block">
-        <h4>EMAIL</h4>
-        <p><a href="mailto:concierge@riseperfume.com">concierge@riseperfume.com</a></p>
-      </div>
-      
-      <div class="info-block">
-        <h4>BOUTIQUE</h4>
-        <p>15 Place Vendôme<br>75001 Paris, France</p>
+    <div class="contact-image-wrapper">
+      <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Contact Us" class="contact-image">
+      <div class="contact-info-card">
+        <h3>CLIENT CONCIERGE</h3>
+        <p>Available Monday to Friday, 9:00 AM to 6:00 PM (EST).</p>
+        
+        <div class="info-block">
+          <h4>EMAIL</h4>
+          <p><a href="mailto:concierge@riseperfume.com">concierge@riseperfume.com</a></p>
+        </div>
+        
+        <div class="info-block">
+          <h4>BOUTIQUE</h4>
+          <p>15 Place Vendôme<br>75001 Paris, France</p>
+        </div>
       </div>
     </div>
 
@@ -87,11 +90,70 @@
 
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--spacing-xl);
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
 }
 
-.contact-info h3 {
+.contact-image-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  right: 20px;
+  height: 370px;
+  background: radial-gradient(circle, rgba(212,175,55,0.4) 0%, transparent 60%);
+  filter: blur(50px);
+  z-index: 0;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.contact-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.5s ease;
+  animation: floatImage 6s ease-in-out infinite;
+}
+
+.contact-image:hover {
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2), 0 0 20px rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.6);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+@keyframes floatImage {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.4; transform: scale(0.95); }
+  100% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.contact-info-card {
+  background: #0a0a0a;
+  border-radius: 20px;
+  padding: 2.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.contact-info-card h3 {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   letter-spacing: 0.1em;
@@ -99,20 +161,24 @@
   margin-bottom: 1rem;
 }
 
-.contact-info > p {
+.contact-info-card > p {
   font-family: var(--font-sans);
-  font-size: 1rem; /* Increased */
+  font-size: 1rem;
   color: rgba(239, 232, 223, 0.7);
   margin-bottom: 2rem;
 }
 
 .info-block {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-block:last-child {
+  margin-bottom: 0;
 }
 
 .info-block h4 {
   font-family: var(--font-sans);
-  font-size: 0.9rem; /* Increased */
+  font-size: 0.9rem;
   letter-spacing: 0.15em;
   color: var(--color-soft-gold);
   margin-bottom: 0.5rem;
@@ -120,21 +186,23 @@
 
 .info-block p, .info-block a {
   font-family: var(--font-sans);
-  font-size: 1rem; /* Increased */
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--color-ivory);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .info-block a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--color-champagne);
+  color: var(--color-champagne);
 }
 
 .contact-form-container {
   background: #0a0a0a;
-  border: 1px solid rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 24px;
   padding: 3rem;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
 .form-row {
@@ -185,19 +253,22 @@
 .submit-btn {
   background: var(--color-champagne);
   border: none;
+  border-radius: 12px;
   color: var(--color-luxury-black);
-  padding: 1rem 3rem;
+  padding: 1.2rem 3rem;
   font-family: var(--font-sans);
   font-size: 1rem; /* Increased */
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .submit-btn:hover {
   background: var(--color-soft-gold);
+  transform: translateY(-2px);
 }
 
 .form-success {
@@ -212,6 +283,12 @@
 }
 
 @media screen and (max-width: 768px) {
+  .rise-contact-page {
+    padding: calc(var(--spacing-xl) + 20px) 1rem var(--spacing-xl);
+  }
+  .contact-header h1 {
+    font-size: 2.5rem;
+  }
   .contact-layout {
     grid-template-columns: 1fr;
   }

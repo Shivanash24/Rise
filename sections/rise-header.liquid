@@ -1,10 +1,19 @@
 <header class="rise-header">
   <div class="rise-header-container">
+    <div class="rise-mobile-menu-toggle">
+      <button class="hamburger-btn" aria-label="Menu" onclick="document.body.classList.toggle('mobile-menu-open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+
     <div class="rise-logo">
       <a href="{{ routes.root_url }}">RISE</a>
     </div>
     
     <nav class="rise-nav">
+      <button class="close-menu-btn" aria-label="Close" onclick="document.body.classList.remove('mobile-menu-open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
       <ul>
         <li><a href="/">HOME</a></li>
         <li><a href="/collections/all">COLLECTION</a></li>
@@ -14,9 +23,15 @@
     </nav>
 
     <div class="rise-icons">
-      <a href="{{ routes.search_url }}" class="icon-search">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      </a>
+      <div class="header-search-container">
+        <form action="{{ routes.search_url }}" method="get" class="header-search-form" onsubmit="return this.q.value.trim() !== '';">
+          <input type="search" name="q" placeholder="SEARCH..." class="header-search-input" id="HeaderSearchInput">
+          <input type="hidden" name="options[prefix]" value="last">
+          <button type="button" class="icon-search" aria-label="Search" onclick="var input = document.getElementById('HeaderSearchInput'); if(input.value.trim() !== '') { this.form.submit(); } else { input.focus(); }">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
+      </div>
       <a href="{{ routes.account_url }}" class="icon-account">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
       </a>
@@ -85,7 +100,62 @@
 
 .rise-icons {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
+}
+
+.header-search-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-search-form {
+  display: flex;
+  align-items: center;
+}
+
+.header-search-input {
+  width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid transparent;
+  outline: none;
+  opacity: 0;
+}
+
+.header-search-input::placeholder {
+  color: rgba(239, 232, 223, 0.5);
+}
+
+.header-search-form:hover .header-search-input,
+.header-search-input:focus,
+.header-search-input:not(:placeholder-shown) {
+  width: 180px;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--color-champagne);
+  opacity: 1;
+  margin-right: 0.5rem;
+}
+
+.icon-search {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--color-ivory);
+  transition: color 0.3s ease;
+}
+
+.icon-search:hover {
+  color: var(--color-soft-gold);
 }
 
 .rise-icons a {
@@ -113,6 +183,89 @@
   font-size: 0.7rem;
   font-weight: bold;
   font-family: var(--font-sans);
+}
+
+/* Mobile Responsiveness */
+.rise-mobile-menu-toggle {
+  display: none;
+}
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  padding: 0;
+  cursor: pointer;
+}
+
+.close-menu-btn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .rise-header-container {
+    padding: 1rem;
+  }
+  
+  .rise-mobile-menu-toggle {
+    display: block;
+    flex: 1;
+  }
+  
+  .rise-logo {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .rise-logo a {
+    font-size: 1.5rem;
+  }
+  
+  .rise-icons {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .rise-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--color-luxury-black);
+    border-right: 1px solid rgba(212, 175, 55, 0.2);
+    z-index: 1001;
+    padding: 5rem 2rem;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .mobile-menu-open .rise-nav {
+    left: 0;
+  }
+  
+  .close-menu-btn {
+    display: block;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--color-champagne);
+    cursor: pointer;
+  }
+  
+  .rise-nav ul {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .header-search-form:hover .header-search-input,
+  .header-search-input:focus,
+  .header-search-input:not(:placeholder-shown) {
+    width: 120px;
+  }
 }
 </style>
 

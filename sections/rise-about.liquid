@@ -19,13 +19,21 @@
     </div>
   </div>
   
-  <div class="about-image">
-    <div class="about-image-inner">
+  <div class="about-collage">
+    <div class="collage-item collage-item-main shine-effect">
       {% if section.settings.image %}
         {{ section.settings.image | image_url: width: 1200 | image_tag: alt: section.settings.heading }}
       {% else %}
-        <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Master Perfumer at work">
+        <img src="{{ 'luxury_perfume_1.png' | asset_url }}" alt="Master Perfumer at work">
       {% endif %}
+    </div>
+    <div class="collage-side">
+      <div class="collage-item collage-item-sub shine-effect">
+        <img src="{{ 'luxury_ingredients_1.png' | asset_url }}" alt="Premium Ingredients">
+      </div>
+      <div class="collage-item collage-item-sub shine-effect">
+        <img src="{{ 'luxury_artisan_1.png' | asset_url }}" alt="Artisan Process">
+      </div>
     </div>
   </div>
 </div>
@@ -100,58 +108,80 @@
   text-transform: uppercase;
 }
 
-.about-image {
-  position: relative;
-  margin-top: var(--spacing-lg);
-  padding: 0;
-  background: transparent;
-  border: none;
+.about-collage {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-top: var(--spacing-xxl);
 }
 
-/* Luxurious Offset Gold Border */
-.about-image::before {
+.collage-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.collage-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: all 0.5s ease;
+}
+
+.collage-item:hover {
+  box-shadow: 0 25px 45px rgba(212, 175, 55, 0.25);
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-5px);
+}
+
+.shine-effect::after {
   content: '';
   position: absolute;
-  top: -20px;
-  right: -20px;
-  bottom: 20px;
-  left: 20px;
-  border: 1px solid var(--color-champagne);
-  opacity: 0.5;
-  z-index: 0;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  transition: all 0.7s ease;
+  z-index: 2;
   pointer-events: none;
-  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.about-image:hover::before {
-  top: -10px;
-  right: -10px;
-  bottom: 10px;
-  left: 10px;
-  opacity: 1;
-  border-color: var(--color-soft-gold);
+.collage-item:hover.shine-effect::after {
+  left: 150%;
+  transition: all 0.7s ease;
 }
 
-.about-image-inner {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-
-.about-image-inner img {
+.collage-item img {
   width: 100%;
-  height: 550px;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.about-image:hover .about-image-inner img {
+.collage-item:hover img {
   transform: scale(1.05);
 }
 
+.collage-item-main img {
+  height: 600px;
+}
+
+.collage-item-sub img {
+  height: calc((600px - 1.5rem) / 2);
+}
+
 @media screen and (max-width: 768px) {
+  .rise-about-page {
+    padding: calc(var(--spacing-xl) + 20px) 1rem var(--spacing-xl);
+  }
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
   .about-content {
     grid-template-columns: 1fr;
   }
@@ -161,7 +191,18 @@
     padding-left: 0;
     padding-top: 2rem;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+  }
+  .about-collage {
+    grid-template-columns: 1fr;
+  }
+  .collage-side {
+    flex-direction: column;
+  }
+  .collage-item-main img, .collage-item-sub img {
+    height: 350px;
   }
 }
 </style>

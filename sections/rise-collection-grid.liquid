@@ -16,7 +16,8 @@
         <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="clear-all" style="text-decoration: none;">CLEAR ALL</a>
       </div>
       
-      <form class="collection-filters-form">
+      <form id="CollectionFiltersForm" class="collection-filters-form" action="{{ collection.url }}" method="get">
+        <input type="hidden" id="FilterSortBy" name="sort_by" value="{{ collection.sort_by | default: collection.default_sort_by }}">
         {%- for filter in collection.filters -%}
           <div class="filter-group">
             <h4 class="filter-group-title">{{ filter.label | upcase }} <span>+</span></h4>
@@ -76,11 +77,14 @@
       <div class="collection-toolbar">
         <div class="results-count">{{ collection.products_count | default: 8 }} PRODUCTS</div>
         <div class="sort-by">
-          <label>SORT BY:</label>
-          <select>
-            <option>Featured</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
+          <label for="SortBy">SORT BY:</label>
+          <select id="SortBy" onchange="document.getElementById('FilterSortBy').value = this.value; document.getElementById('CollectionFiltersForm').submit();">
+            {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+            <option value="manual" {% if sort_by == 'manual' %}selected{% endif %}>Featured</option>
+            <option value="price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+            <option value="price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+            <option value="title-ascending" {% if sort_by == 'title-ascending' %}selected{% endif %}>Alphabetically, A-Z</option>
+            <option value="created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>Date, new to old</option>
           </select>
         </div>
       </div>
@@ -379,6 +383,45 @@
   font-family: var(--font-sans);
   font-size: 0.75rem;
   color: var(--color-champagne);
+}
+
+@media screen and (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rise-collection-page {
+    padding: calc(var(--spacing-xl) + 20px) 1rem var(--spacing-xl);
+  }
+  .collection-layout {
+    flex-direction: column;
+  }
+  .collection-sidebar {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .collection-title {
+    font-size: 1.5rem;
+  }
+  .collection-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sort-by {
+    display: flex;
+    flex-direction: column;
+  }
+  .sort-by select {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
 }
 </style>
 

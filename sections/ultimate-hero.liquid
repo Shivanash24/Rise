@@ -151,6 +151,43 @@
   /* This drop-shadow will create a realistic 3D shadow ONLY on the bottle once a transparent PNG is used */
   filter: drop-shadow(-10px 20px 30px rgba(0,0,0,0.8));
 }
+
+@media screen and (max-width: 768px) {
+  .hero-content {
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    transform: none;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-image-container {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .hero-image-inner {
+    width: 100%;
+    height: 55%;
+    margin-bottom: 2rem;
+  }
+}
 </style>
 
 {% schema %}

@@ -240,7 +240,31 @@
   align-items: center;
 }
 
+@media screen and (max-width: 1024px) {
+  .rise-footer-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .brand-column {
+    grid-column: span 3;
+  }
+  .newsletter-column {
+    grid-column: span 3;
+    margin-top: 1rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  .rise-footer-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+  .brand-column, .newsletter-column {
+    grid-column: span 1;
+  }
+  .social-icons {
+    justify-content: center;
+  }
   .footer-bottom {
     flex-direction: column;
     gap: 1.5rem;

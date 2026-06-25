@@ -6,12 +6,7 @@
       <img src="{{ 'noir_eclipse_campaign.png' | asset_url }}" alt="Nature and Luxury" loading="eager" />
     </div>
     <div class="sus-hero-overlay-ultra"></div>
-    <div class="sus-hero-content-ultra">
-      <p class="sus-hero-kicker" data-gsap="fade-up">BEYOND FRAGRANCE</p>
-      <h1 class="sus-hero-title" data-gsap="title-reveal">
-        <span>Sustain</span><span>ability</span>
-      </h1>
-    </div>
+    <!-- Text removed as requested -->
     <div class="sus-scroll-wrap">
       <div class="sus-scroll-text">SCROLL</div>
       <div class="sus-scroll-indicator"></div>
@@ -109,12 +104,16 @@
   /* 1. Hero Section */
   .sus-hero-ultra {
     position: relative;
-    height: 100vh;
-    min-height: 800px;
+    height: 85vh;
+    min-height: 600px;
+    width: 95%;
+    max-width: 1600px;
+    margin: var(--spacing-md) auto;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    border-radius: 20px;
   }
   .sus-hero-bg-ultra {
     position: absolute;
@@ -418,16 +417,7 @@
         ease: 'power3.out'
       });
       
-      gsap.from('[data-gsap="title-reveal"] span', {
-        y: 100,
-        opacity: 0,
-        duration: 1.5,
-        stagger: 0.2,
-        ease: 'power4.out',
-        delay: 0.5
-      });
-      
-      gsap.from('.sus-hero-kicker, .sus-scroll-wrap', {
+      gsap.from('.sus-scroll-wrap', {
         opacity: 0,
         y: 20,
         duration: 1,

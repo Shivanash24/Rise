@@ -1,347 +1,358 @@
-<div class="sus-ultra">
+<div class="sus-v3">
 
-  <!-- Hero Section Removed -->
-
-  <!-- 2. Philosophy Section (Asymmetrical) -->
-  <section class="sus-philosophy premium-container editorial-spacing">
-    <div class="sus-phil-grid">
-      <div class="sus-phil-left" data-gsap="fade-up">
-        <h2 class="sus-phil-heading">Our Promise to the Earth</h2>
+  <!-- 1. Cinematic Hero Section -->
+  <section class="sus-hero-v3">
+    <div class="sus-hero-bg-v3">
+      <!-- We use CSS animation for continuous Ken Burns effect -->
+      <img src="{{ 'golden_oud_campaign.png' | asset_url }}" alt="Golden Oud Sustainability" class="kb-zoom" loading="eager" />
+    </div>
+    <div class="sus-hero-overlay-v3"></div>
+    <div class="sus-hero-content-v3">
+      <div class="sus-hero-text-wrap">
+        <h1 class="sus-title-v3 split-text" data-gsap="split-reveal">SUSTAINABILITY</h1>
       </div>
-      <div class="sus-phil-right" data-gsap="fade-up" data-delay="0.2">
-        <p class="sus-phil-text">
-          True luxury is not extracted; it is cultivated. At RISE, we believe that the most exquisite scents are born from a deep, harmonious relationship with nature. Our commitment to sustainability is woven into every drop, ensuring that our pursuit of perfection never compromises the world we share.
-        </p>
-      </div>
+    </div>
+    <div class="sus-mouse-scroll">
+      <div class="mouse-wheel"></div>
     </div>
   </section>
 
-  <!-- 3. Horizontal Scroll Pillars Section -->
-  <section class="sus-pillars-ultra" id="sus-pillars-pin">
-    <div class="sus-pillars-header" data-gsap="fade-in">
-      <h3 class="sus-pillars-subtitle">THREE PILLARS OF EXCELLENCE</h3>
+  <!-- 2. Masked Parallax Text Section -->
+  <section class="sus-masked-v3">
+    <div class="sus-masked-content">
+      <h2 class="masked-heading" style="background-image: url('{{ 'luxury_ingredients_1.png' | asset_url }}');">
+        OUR PHILOSOPHY
+      </h2>
+      <p class="sus-masked-sub" data-gsap="fade-up">
+        True luxury is not extracted; it is cultivated. At RISE, we believe that the most exquisite scents are born from a deep, harmonious relationship with nature. Our commitment to sustainability is woven into every drop, ensuring that our pursuit of perfection never compromises the world we share.
+      </p>
     </div>
-    <div class="sus-pillars-container">
-      <div class="sus-pillars-track">
-        
-        <!-- Pillar 1 -->
-        <div class="sus-pillar-card">
-          <div class="sus-pillar-img-wrap">
-            <img src="{{ 'luxury_ingredients_1.png' | asset_url }}" alt="Ethical Sourcing" loading="lazy">
-            <div class="sus-pillar-number">01</div>
-          </div>
-          <div class="sus-pillar-info">
+  </section>
+
+  <!-- 3. Interactive 3D Pillars -->
+  <section class="sus-pillars-v3">
+    <h3 class="sus-pillars-title" data-gsap="fade-up">THREE PILLARS OF EXCELLENCE</h3>
+    <div class="sus-pillars-grid">
+      
+      <!-- Pillar 1 -->
+      <div class="sus-3d-card" data-gsap="stagger-up">
+        <div class="card-glass">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <span class="card-num">01</span>
             <h4>Ethical Sourcing</h4>
             <p>We work directly with generational farmers and local artisans across the globe, ensuring fair wages and protecting the fragile ecosystems where our rare botanicals thrive.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Pillar 2 -->
-        <div class="sus-pillar-card">
-          <div class="sus-pillar-img-wrap">
-            <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Timeless Vessels" loading="lazy">
-            <div class="sus-pillar-number">02</div>
-          </div>
-          <div class="sus-pillar-info">
+      <!-- Pillar 2 -->
+      <div class="sus-3d-card" data-gsap="stagger-up">
+        <div class="card-glass">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <span class="card-num">02</span>
             <h4>Timeless Vessels</h4>
             <p>Our heavy glass flacons are masterpieces designed to last forever. Created with 100% recyclable glass and zero single-use plastics in our secondary packaging.</p>
           </div>
         </div>
+      </div>
 
-        <!-- Pillar 3 -->
-        <div class="sus-pillar-card">
-          <div class="sus-pillar-img-wrap">
-            <img src="{{ 'velvet_amber_campaign.png' | asset_url }}" alt="Carbon Negative" loading="lazy">
-            <div class="sus-pillar-number">03</div>
-          </div>
-          <div class="sus-pillar-info">
+      <!-- Pillar 3 -->
+      <div class="sus-3d-card" data-gsap="stagger-up">
+        <div class="card-glass">
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <span class="card-num">03</span>
             <h4>Carbon Negative</h4>
             <p>We don't just offset; we restore. Through aggressive afforestation initiatives and renewable energy transitions, we draw more carbon than we emit.</p>
           </div>
         </div>
-
       </div>
+
     </div>
   </section>
 
-  <!-- 4. Grand Statement (Glassmorphism Parallax) -->
-  <section class="sus-statement-ultra">
-    <img src="{{ 'luxury_artisan_1.png' | asset_url }}" alt="Artisan Craftsmanship" class="sus-statement-img" data-gsap="parallax" loading="lazy">
-    <div class="sus-statement-box" data-gsap="fade-up">
-      <p>"Elegance is the only beauty that never fades, and sustainability is the only legacy worth leaving."</p>
-      <a href="{{ routes.all_products_collection_url }}" class="sus-btn-ultra">Experience RISE</a>
+  <!-- 4. Cinematic Parallax Footer -->
+  <section class="sus-finale-v3">
+    <div class="sus-finale-bg">
+      <img src="{{ 'midnight_rose_campaign.png' | asset_url }}" alt="Midnight Rose Sustainability" data-gsap="parallax-slow" loading="lazy" />
+    </div>
+    <div class="sus-finale-overlay"></div>
+    <div class="sus-finale-content">
+      <div class="sus-blur-text-wrap">
+        <p class="sus-blur-text" data-gsap="blur-reveal">
+          "Elegance is the only beauty that never fades,<br>and sustainability is the only legacy worth leaving."
+        </p>
+      </div>
+      <a href="{{ routes.all_products_collection_url }}" class="sus-finale-btn" data-gsap="fade-up">Experience RISE</a>
     </div>
   </section>
 
 </div>
 
 <style>
-  /* Variables & Base */
   :root {
-    --sus-gold: #c5a059;
-    --sus-champagne: #e5d5b8;
-    --sus-dark: #050505;
-    --sus-light: #f8f5f0;
+    --v3-gold: #c5a059;
+    --v3-champagne: #e5d5b8;
+    --v3-dark: #050505;
+    --v3-light: #f8f5f0;
   }
-  .sus-ultra {
-    background: var(--sus-dark);
-    color: var(--sus-light);
+  .sus-v3 {
+    background: var(--v3-dark);
+    color: var(--v3-light);
     font-family: var(--font-sans);
     overflow-x: hidden;
   }
-  
-  /* 1. Hero Section */
-  .sus-hero-ultra {
+
+  /* 1. Cinematic Hero */
+  .sus-hero-v3 {
     position: relative;
-    height: 85vh;
-    min-height: 600px;
-    width: 95%;
-    max-width: 1600px;
-    margin: var(--spacing-md) auto;
+    height: 100vh;
+    min-height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 20px;
   }
-  .sus-hero-bg-ultra {
+  .sus-hero-bg-v3 {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    inset: 0;
+    z-index: 0;
   }
-  .sus-hero-bg-ultra img {
+  .kb-zoom {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.15); /* Starting scale for GSAP */
+    animation: kenBurns 20s linear infinite alternate;
   }
-  .sus-hero-overlay-ultra {
+  @keyframes kenBurns {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.25); }
+  }
+  .sus-hero-overlay-v3 {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.3) 50%, rgba(5,5,5,1) 100%);
+    background: radial-gradient(circle at center, rgba(5,5,5,0.1) 0%, rgba(5,5,5,0.8) 100%);
+    z-index: 1;
   }
-  .sus-hero-content-ultra {
+  .sus-hero-content-v3 {
     position: relative;
     z-index: 10;
     text-align: center;
     width: 100%;
-    padding: 0 var(--spacing-md);
   }
-  .sus-hero-kicker {
-    font-size: 0.9rem;
-    letter-spacing: 0.4em;
-    color: var(--sus-champagne);
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
-  .sus-hero-title {
+  .sus-title-v3 {
     font-family: var(--font-serif);
-    font-size: clamp(4rem, 12vw, 12rem);
-    line-height: 0.85;
-    margin: 0;
+    font-size: clamp(3rem, 10vw, 9rem);
+    letter-spacing: 0.1em;
+    color: var(--v3-champagne);
     text-transform: uppercase;
+    font-weight: 300;
+    margin: 0;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.8);
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 20px 0;
   }
-  /* Outline effect on the first line, solid on the second */
-  .sus-hero-title span:first-child {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(229, 213, 184, 0.6);
-    margin-left: -10vw;
+  .char {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
   }
-  .sus-hero-title span:last-child {
-    color: var(--sus-light);
-    margin-right: -10vw;
-    text-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  }
-  
-  .sus-scroll-wrap {
+  .sus-mouse-scroll {
     position: absolute;
-    bottom: 50px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
     z-index: 10;
+    width: 30px;
+    height: 45px;
+    border: 1px solid rgba(229, 213, 184, 0.4);
+    border-radius: 15px;
   }
-  .sus-scroll-text {
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    color: var(--sus-champagne);
-    opacity: 0.7;
+  .mouse-wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--v3-champagne);
+    border-radius: 2px;
+    margin: 6px auto 0;
+    animation: mouseScroll 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
   }
-  .sus-scroll-indicator {
-    width: 1px;
-    height: 80px;
-    background: rgba(229, 213, 184, 0.2);
-    position: relative;
-    overflow: hidden;
-  }
-  .sus-scroll-indicator::after {
-    content: '';
-    position: absolute;
-    top: -100%; left: 0; width: 100%; height: 100%;
-    background: var(--sus-champagne);
-    animation: dropScroll 2.5s infinite cubic-bezier(0.65, 0, 0.35, 1);
-  }
-  @keyframes dropScroll {
-    0% { top: -100%; }
-    100% { top: 100%; }
+  @keyframes mouseScroll {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(15px); opacity: 0; }
   }
 
-  /* 2. Philosophy */
-  .sus-philosophy {
+  /* 2. Masked Parallax Text */
+  .sus-masked-v3 {
     padding: var(--spacing-xxl) var(--spacing-md);
+    text-align: center;
+    background: #000;
   }
-  .sus-phil-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xl);
-    align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .sus-phil-heading {
+  .masked-heading {
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 5vw, 5rem);
-    line-height: 1.1;
-    color: var(--sus-champagne);
-    font-weight: 300;
+    font-size: clamp(4rem, 15vw, 15rem);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+    
+    /* The Magic Masking CSS */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
-  .sus-phil-text {
+  .sus-masked-sub {
+    max-width: 800px;
+    margin: var(--spacing-lg) auto 0;
     font-size: clamp(1.1rem, 1.5vw, 1.5rem);
     line-height: 1.8;
     color: rgba(248, 245, 240, 0.8);
     font-weight: 300;
   }
 
-  /* 3. Horizontal Scroll Pillars */
-  .sus-pillars-ultra {
-    background: #0a0a0a;
-    padding: var(--spacing-xxl) 0;
-    overflow: hidden;
+  /* 3. Interactive 3D Pillars */
+  .sus-pillars-v3 {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
   }
-  .sus-pillars-header {
+  .sus-pillars-title {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
-  }
-  .sus-pillars-subtitle {
     font-family: var(--font-sans);
     font-size: 0.9rem;
     letter-spacing: 0.3em;
-    color: var(--sus-gold);
-    text-transform: uppercase;
+    color: var(--v3-gold);
+    margin-bottom: var(--spacing-xl);
   }
-  .sus-pillars-container {
-    width: 100%;
-    /* GSAP will pin this container and translate the track */
+  .sus-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+    perspective: 1500px; /* Essential for 3D tilt */
   }
-  .sus-pillars-track {
-    display: flex;
-    gap: 4vw;
-    padding: 0 10vw;
-    width: fit-content;
+  .sus-3d-card {
+    height: 500px;
+    transform-style: preserve-3d;
   }
-  .sus-pillar-card {
-    width: 45vw;
-    min-width: 350px;
-    max-width: 600px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-  .sus-pillar-img-wrap {
+  .card-glass {
     position: relative;
     width: 100%;
-    aspect-ratio: 4/5;
-    overflow: hidden;
-    border-radius: 4px;
-  }
-  .sus-pillar-img-wrap img {
-    width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 1.5s ease;
+    border-radius: 12px;
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(229, 213, 184, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
   }
-  .sus-pillar-card:hover .sus-pillar-img-wrap img {
-    transform: scale(1.05);
-  }
-  .sus-pillar-number {
+  .card-glow {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-family: var(--font-serif);
-    font-size: 3rem;
-    color: var(--sus-light);
-    line-height: 1;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -150px;
+    left: -150px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    mix-blend-mode: screen;
   }
-  .sus-pillar-info h4 {
+  .sus-3d-card:hover .card-glow {
+    opacity: 1;
+  }
+  .card-content {
+    position: absolute;
+    inset: 0;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transform: translateZ(50px); /* Pushes content out in 3D space */
+    pointer-events: none;
+  }
+  .card-num {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
     font-family: var(--font-serif);
-    font-size: 2.5rem;
-    color: var(--sus-champagne);
+    font-size: 4rem;
+    color: rgba(229, 213, 184, 0.1);
+    line-height: 1;
+  }
+  .card-content h4 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--v3-champagne);
     margin-bottom: 1rem;
     font-weight: 300;
   }
-  .sus-pillar-info p {
-    font-size: 1.1rem;
-    line-height: 1.7;
+  .card-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
     color: rgba(248, 245, 240, 0.7);
     font-weight: 300;
   }
 
-  /* 4. Grand Statement */
-  .sus-statement-ultra {
+  /* 4. Cinematic Parallax Footer */
+  .sus-finale-v3 {
     position: relative;
-    height: 100vh;
-    min-height: 800px;
+    height: 80vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
-  .sus-statement-img {
+  .sus-finale-bg {
     position: absolute;
     top: -20%; left: 0; width: 100%; height: 140%;
-    object-fit: cover;
     z-index: 0;
   }
-  .sus-statement-ultra::before {
-    content: '';
+  .sus-finale-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .sus-finale-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(5, 5, 5, 0.4);
+    background: linear-gradient(180deg, #0a0a0a 0%, rgba(10,10,10,0.5) 30%, rgba(10,10,10,0.5) 70%, #050505 100%);
     z-index: 1;
   }
-  .sus-statement-box {
+  .sus-finale-content {
     position: relative;
     z-index: 10;
-    max-width: 800px;
     text-align: center;
-    padding: var(--spacing-xl);
-    background: rgba(10, 10, 10, 0.5);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(229, 213, 184, 0.15);
-    border-radius: 2px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    padding: 0 var(--spacing-md);
   }
-  .sus-statement-box p {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.3;
-    color: var(--sus-champagne);
+  .sus-blur-text-wrap {
     margin-bottom: var(--spacing-lg);
-    font-style: italic;
   }
-  .sus-btn-ultra {
+  .sus-blur-text {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.3;
+    color: var(--v3-champagne);
+    font-style: italic;
+    filter: blur(10px);
+    opacity: 0;
+  }
+  .sus-finale-btn {
     display: inline-block;
     padding: 18px 45px;
-    border: 1px solid var(--sus-gold);
-    color: var(--sus-gold);
+    border: 1px solid var(--v3-gold);
+    color: var(--v3-gold);
     text-decoration: none;
     font-family: var(--font-sans);
     letter-spacing: 0.15em;
@@ -352,89 +363,61 @@
     position: relative;
     overflow: hidden;
   }
-  .sus-btn-ultra::before {
+  .sus-finale-btn::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--sus-gold);
+    background: var(--v3-gold);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: -1;
   }
-  .sus-btn-ultra:hover {
-    color: var(--sus-dark);
+  .sus-finale-btn:hover {
+    color: var(--v3-dark);
   }
-  .sus-btn-ultra:hover::before {
+  .sus-finale-btn:hover::before {
     transform: scaleX(1);
     transform-origin: left;
-  }
-
-  /* Responsive */
-  @media screen and (max-width: 992px) {
-    .sus-hero-title span:first-child { margin-left: 0; }
-    .sus-hero-title span:last-child { margin-right: 0; }
-    
-    .sus-phil-grid {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: var(--spacing-md);
-    }
-    
-    /* On mobile, disable horizontal scroll and stack them */
-    .sus-pillars-track {
-      flex-direction: column;
-      padding: 0 var(--spacing-md);
-      gap: var(--spacing-xl);
-      width: 100%;
-    }
-    .sus-pillar-card {
-      width: 100%;
-      min-width: 100%;
-    }
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. Manual Text Splitter for the Hero Title
+    const title = document.querySelector('.sus-title-v3');
+    if (title) {
+      const text = title.textContent;
+      title.innerHTML = '';
+      text.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.innerHTML = char === ' ' ? '&nbsp;' : char;
+        title.appendChild(span);
+      });
+    }
+
     if (window.gsap && window.ScrollTrigger) {
       
-      // 1. Hero Animations
-      gsap.to('[data-gsap="hero-scale"] img', {
-        scale: 1,
-        duration: 3,
-        ease: 'power3.out'
-      });
-      
-      gsap.from('.sus-scroll-wrap', {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        delay: 1.5,
-        ease: 'power2.out'
+      // Hero Title Reveal
+      gsap.to('.char', {
+        y: '0%',
+        opacity: 1,
+        duration: 1.2,
+        stagger: 0.05,
+        ease: 'power4.out',
+        delay: 0.5
       });
 
-      // Hero Parallax on Scroll
-      gsap.to('[data-gsap="hero-scale"] img', {
-        yPercent: 20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.sus-hero-ultra',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-
-      // 2. Philosophy Fade Ups
+      // Standard Fade Ups
       const fadeUps = document.querySelectorAll('[data-gsap="fade-up"]');
       fadeUps.forEach(el => {
-        const delay = parseFloat(el.getAttribute('data-delay')) || 0;
         gsap.fromTo(el, 
-          { y: 50, opacity: 0 },
+          { y: 40, opacity: 0 },
           { 
             y: 0, opacity: 1, 
-            duration: 1.2, delay: delay, 
+            duration: 1.2, 
             ease: 'power3.out',
             scrollTrigger: {
               trigger: el,
@@ -445,51 +428,87 @@
         );
       });
 
-      // 3. Horizontal Scroll for Pillars (Desktop Only)
-      if (window.innerWidth > 992) {
-        const track = document.querySelector('.sus-pillars-track');
-        const container = document.querySelector('.sus-pillars-ultra');
-        
-        // Calculate how far to scroll
-        // total width of track minus viewport width + some padding
-        const scrollWidth = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
-        
-        gsap.to(track, {
-          x: -scrollWidth,
-          ease: 'none',
+      // 3D Pillars Staggered Reveal
+      gsap.fromTo('[data-gsap="stagger-up"]', 
+        { y: 80, opacity: 0 },
+        { 
+          y: 0, opacity: 1, 
+          duration: 1.2, 
+          stagger: 0.2,
+          ease: 'power3.out',
           scrollTrigger: {
-            trigger: container,
-            start: 'top top',
-            end: () => `+=${scrollWidth}`,
-            pin: true,
-            scrub: 1, // smooth scrubbing
-            invalidateOnRefresh: true
+            trigger: '.sus-pillars-grid',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
           }
-        });
-      }
+        }
+      );
 
-      // 4. Statement Image Parallax
-      gsap.to('[data-gsap="parallax"]', {
-        yPercent: 20,
+      // Finale Blur Reveal
+      gsap.to('[data-gsap="blur-reveal"]', {
+        filter: 'blur(0px)',
+        opacity: 1,
+        duration: 2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.sus-finale-v3',
+          start: 'top 60%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      // Finale Image Parallax
+      gsap.to('[data-gsap="parallax-slow"]', {
+        yPercent: 15,
         ease: 'none',
         scrollTrigger: {
-          trigger: '.sus-statement-ultra',
+          trigger: '.sus-finale-v3',
           start: 'top bottom',
           end: 'bottom top',
           scrub: true
         }
       });
     }
+
+    // Interactive 3D Tilt Logic
+    const cards = document.querySelectorAll('.sus-3d-card');
+    cards.forEach(cardWrapper => {
+      const card = cardWrapper.querySelector('.card-glass');
+      const glow = cardWrapper.querySelector('.card-glow');
+      
+      cardWrapper.addEventListener('mousemove', (e) => {
+        const rect = cardWrapper.getBoundingClientRect();
+        const mx = e.clientX - rect.left; // Mouse X inside card
+        const my = e.clientY - rect.top;  // Mouse Y inside card
+        
+        // Calculate rotation based on mouse position (-1 to 1)
+        const rotX = -((my / rect.height) * 2 - 1) * 15; // Max 15deg rotation
+        const rotY = ((mx / rect.width) * 2 - 1) * 15;
+        
+        // Apply 3D rotation
+        card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        
+        // Move glow effect
+        if (glow) {
+          glow.style.transform = `translate(${mx}px, ${my}px)`;
+        }
+      });
+      
+      cardWrapper.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+      });
+    });
+
   });
 </script>
 
 {% schema %}
 {
-  "name": "Ultra Sustainability",
+  "name": "Sustainability V3",
   "settings": [],
   "presets": [
     {
-      "name": "Ultra Sustainability"
+      "name": "Sustainability V3 Cinematic"
     }
   ]
 }

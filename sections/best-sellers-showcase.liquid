@@ -10,7 +10,7 @@
         {% assign product = block.settings.product %}
         <div class="bs-item product-card-wrapper" data-gsap-delay="{{ forloop.index | times: 0.2 }}">
           {% if product != blank %}
-            <a href="{{ product.url }}" class="card">
+            <div onclick="window.location.href='{{ product.url }}'" class="card" style="cursor: pointer;">
               <div class="card__inner">
                 {% if product.featured_media %}
                   <img src="{{ product.featured_media | img_url: '600x600', crop: 'center' }}" alt="{{ product.title | escape }}" class="card__media" loading="lazy" srcset="{{ product.featured_media | image_url: width: 350 }} 350w, {{ product.featured_media | image_url: width: 600 }} 600w" sizes="(max-width: 768px) 100vw, 50vw">
@@ -22,14 +22,14 @@
                 <h3 class="bs-product-title">{{ product.title }}</h3>
                 <p class="bs-product-price">{{ product.price | money }}</p>
                 <div class="bs-btn-wrapper">
-                  <span class="bs-btn">Discover</span>
+                  <a href="{{ product.url }}" class="bs-btn" onclick="event.stopPropagation();">Discover</a>
                 </div>
               </div>
               <div class="card-glow-overlay"></div>
-            </a>
+            </div>
           {% else %}
             <!-- Placeholder -->
-            <a href="/?view=product" class="card">
+            <div onclick="window.location.href='/?view=product'" class="card" style="cursor: pointer;">
               <div class="card__inner">
                 {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'card__media placeholder-svg' }}
               </div>
@@ -37,11 +37,11 @@
                 <h3 class="bs-product-title">Premium Fragrance {{ forloop.index }}</h3>
                 <p class="bs-product-price">$120.00</p>
                 <div class="bs-btn-wrapper">
-                  <span class="bs-btn">Discover</span>
+                  <a href="/?view=product" class="bs-btn" onclick="event.stopPropagation();">Discover</a>
                 </div>
               </div>
               <div class="card-glow-overlay"></div>
-            </a>
+            </div>
           {% endif %}
         </div>
       {% endfor %}
@@ -50,7 +50,7 @@
       {% if section.blocks.size == 0 %}
          {% for i in (1..4) %}
             <div class="bs-item product-card-wrapper" data-gsap-delay="{{ forloop.index | times: 0.2 }}">
-              <a href="/?view=product" class="card">
+              <div onclick="window.location.href='/?view=product'" class="card" style="cursor: pointer;">
                 <div class="card__inner">
                   {{ 'product-' | append: i | placeholder_svg_tag: 'card__media placeholder-svg' }}
                 </div>
@@ -58,11 +58,11 @@
                   <h3 class="bs-product-title">Signature Essence {{ i }}</h3>
                   <p class="bs-product-price">$185.00</p>
                   <div class="bs-btn-wrapper">
-                    <span class="bs-btn">Discover</span>
+                    <a href="/?view=product" class="bs-btn" onclick="event.stopPropagation();">Discover</a>
                   </div>
                 </div>
                 <div class="card-glow-overlay"></div>
-              </a>
+              </div>
             </div>
          {% endfor %}
       {% endif %}

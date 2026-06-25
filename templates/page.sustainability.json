@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "sustainability": {
+      "type": "sustainability-template",
+      "settings": {}
+    }
+  },
+  "order": [
+    "sustainability"
+  ]
+}

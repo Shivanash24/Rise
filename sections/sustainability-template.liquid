@@ -1,0 +1,259 @@
+<div class="sustainability-wrapper premium-container editorial-spacing">
+  <!-- Hero Section -->
+  <div class="sustainability-hero">
+    <div class="sustainability-hero-content" data-gsap="fade-up">
+      <h1 class="sustainability-title text-soft-gold">Our Commitment</h1>
+      <p class="sustainability-subtitle">Crafting luxury with a conscience. We believe true elegance should leave a positive mark on the world.</p>
+    </div>
+    <div class="sustainability-hero-image" data-gsap="scale-in">
+      <img src="{{ 'luxury_ingredients_1.png' | asset_img_url: 'master' }}" alt="Luxury Ingredients" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Pillars Section -->
+  <div class="sustainability-pillars">
+    
+    <div class="pillar-card card" data-gsap="fade-up">
+      <div class="pillar-icon">
+        {% render 'icon-leaf' %}
+      </div>
+      <h3 class="pillar-title">Ethical Sourcing</h3>
+      <p class="pillar-text">We source our rare ingredients responsibly, ensuring fair trade and supporting local artisan communities around the globe.</p>
+    </div>
+
+    <div class="pillar-card card" data-gsap="fade-up">
+      <div class="pillar-icon">
+        {% render 'icon-recycle' %}
+      </div>
+      <h3 class="pillar-title">Sustainable Packaging</h3>
+      <p class="pillar-text">Our iconic bottles are designed to be cherished forever or fully recycled. We minimize single-use plastics across our entire supply chain.</p>
+    </div>
+
+    <div class="pillar-card card" data-gsap="fade-up">
+      <div class="pillar-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+      <h3 class="pillar-title">Carbon Neutrality</h3>
+      <p class="pillar-text">We are continuously reducing our carbon footprint, investing in renewable energy and certified offset programs.</p>
+    </div>
+
+  </div>
+
+  <!-- Vision Section -->
+  <div class="sustainability-vision" data-gsap="fade-in">
+    <div class="vision-content">
+      <h2 class="text-soft-gold">A Legacy for Tomorrow</h2>
+      <p>Luxury is about timelessness. By protecting the environments from which we draw our inspiration, we ensure our creations can be enjoyed for generations to come. Join us on our journey towards a more beautiful, sustainable future.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sustainability-wrapper {
+    overflow: hidden;
+  }
+  .sustainability-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+    position: relative;
+  }
+  .sustainability-title {
+    font-size: clamp(4rem, 8vw, 8rem);
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to right, var(--color-soft-gold), var(--color-champagne), var(--color-soft-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShimmer 5s infinite linear;
+    background-size: 200% auto;
+  }
+  @keyframes goldShimmer {
+    to { background-position: 200% center; }
+  }
+  .sustainability-subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--color-warm-beige);
+    font-weight: 300;
+  }
+  .sustainability-hero-image {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px rgba(212, 175, 55, 0.1);
+    position: relative;
+  }
+  .sustainability-hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--color-luxury-black), transparent 40%);
+  }
+  .sustainability-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scale(1.05);
+    transition: transform 1.5s ease;
+  }
+  .sustainability-hero-image:hover img {
+    transform: scale(1);
+  }
+
+  .sustainability-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xxl);
+  }
+  
+  .pillar-card {
+    background: rgba(10, 10, 10, 0.6) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.1) !important;
+    padding: var(--spacing-lg);
+    text-align: center;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+  }
+  .pillar-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212, 175, 55, 0.4) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.05);
+  }
+  .pillar-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-md);
+    color: var(--color-soft-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pillar-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .pillar-title {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-ivory);
+  }
+  .pillar-text {
+    color: var(--color-warm-beige);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  .sustainability-vision {
+    position: relative;
+    padding: var(--spacing-xxl) var(--spacing-md);
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(212,175,55,0.05) 0%, transparent 60%);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  }
+  .vision-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .vision-content h2 {
+    font-size: clamp(3rem, 5vw, 5rem);
+    margin-bottom: var(--spacing-md);
+  }
+  .vision-content p {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--color-ivory);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  @media (max-width: 768px) {
+    .editorial-spacing {
+      padding-top: var(--spacing-lg);
+      padding-bottom: var(--spacing-lg);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Only run if GSAP is loaded
+    if (window.gsap && window.ScrollTrigger) {
+      
+      const fadeUpElements = document.querySelectorAll('[data-gsap="fade-up"]');
+      fadeUpElements.forEach((el, index) => {
+        gsap.fromTo(el, 
+          { y: 50, opacity: 0 },
+          { 
+            y: 0, 
+            opacity: 1, 
+            duration: 1, 
+            delay: index * 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
+      });
+
+      const scaleInElements = document.querySelectorAll('[data-gsap="scale-in"]');
+      scaleInElements.forEach(el => {
+        gsap.fromTo(el, 
+          { scale: 0.9, opacity: 0 },
+          { 
+            scale: 1, 
+            opacity: 1, 
+            duration: 1.5, 
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 80%'
+            }
+          }
+        );
+      });
+      
+      const fadeInElements = document.querySelectorAll('[data-gsap="fade-in"]');
+      fadeInElements.forEach(el => {
+        gsap.fromTo(el, 
+          { opacity: 0 },
+          { 
+            opacity: 1, 
+            duration: 2, 
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 70%'
+            }
+          }
+        );
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Sustainability Template",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Sustainability Template"
+    }
+  ]
+}
+{% endschema %}

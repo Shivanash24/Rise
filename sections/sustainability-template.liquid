@@ -1,146 +1,175 @@
-<div class="sustainability-v2">
-  <!-- Hero Section -->
-  <section class="sus-hero">
-    <div class="sus-hero-bg">
-      <img src="{{ 'luxury_ingredients_1.png' | asset_url }}" alt="Nature" class="sus-hero-img" loading="eager" />
-      <div class="sus-hero-overlay"></div>
+<div class="sus-ultra">
+
+  <!-- 1. Hero Section -->
+  <section class="sus-hero-ultra">
+    <div class="sus-hero-bg-ultra" data-gsap="hero-scale">
+      <img src="{{ 'noir_eclipse_campaign.png' | asset_url }}" alt="Nature and Luxury" loading="eager" />
     </div>
-    <div class="sus-hero-content premium-container">
-      <p class="sus-kicker" data-gsap="fade-up">OUR COMMITMENT</p>
-      <h1 class="sus-title" data-gsap="fade-up" data-delay="0.2">Luxury<br/>Without<br/>Compromise.</h1>
+    <div class="sus-hero-overlay-ultra"></div>
+    <div class="sus-hero-content-ultra">
+      <p class="sus-hero-kicker" data-gsap="fade-up">BEYOND FRAGRANCE</p>
+      <h1 class="sus-hero-title" data-gsap="title-reveal">
+        <span>Sustain</span><span>ability</span>
+      </h1>
     </div>
-    <div class="sus-scroll-indicator" data-gsap="fade-in" data-delay="1">
-      <span>Discover</span>
-      <div class="sus-scroll-line"></div>
+    <div class="sus-scroll-wrap">
+      <div class="sus-scroll-text">SCROLL</div>
+      <div class="sus-scroll-indicator"></div>
     </div>
   </section>
 
-  <!-- Statement Section -->
-  <section class="sus-statement premium-container editorial-spacing">
-    <div class="sus-statement-inner">
-      <h2 class="sus-statement-text" data-gsap="fade-up">
-        We believe that true elegance lies in our profound respect for nature. Every bottle of RISE is a testament to sustainable craftsmanship and ethical sourcing.
-      </h2>
+  <!-- 2. Philosophy Section (Asymmetrical) -->
+  <section class="sus-philosophy premium-container editorial-spacing">
+    <div class="sus-phil-grid">
+      <div class="sus-phil-left" data-gsap="fade-up">
+        <h2 class="sus-phil-heading">Our Promise to the Earth</h2>
+      </div>
+      <div class="sus-phil-right" data-gsap="fade-up" data-delay="0.2">
+        <p class="sus-phil-text">
+          True luxury is not extracted; it is cultivated. At RISE, we believe that the most exquisite scents are born from a deep, harmonious relationship with nature. Our commitment to sustainability is woven into every drop, ensuring that our pursuit of perfection never compromises the world we share.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Pillars Section with Parallax Image -->
-  <section class="sus-pillars-section">
-    <div class="sus-pillars-grid premium-container">
-      
-      <!-- Left side: Pillars List -->
-      <div class="sus-pillars-list">
+  <!-- 3. Horizontal Scroll Pillars Section -->
+  <section class="sus-pillars-ultra" id="sus-pillars-pin">
+    <div class="sus-pillars-header" data-gsap="fade-in">
+      <h3 class="sus-pillars-subtitle">THREE PILLARS OF EXCELLENCE</h3>
+    </div>
+    <div class="sus-pillars-container">
+      <div class="sus-pillars-track">
         
-        <div class="sus-pillar-item" data-gsap="fade-up">
-          <div class="sus-pillar-number">01</div>
-          <div class="sus-pillar-content">
-            <h3 class="sus-pillar-heading">Ethical Sourcing</h3>
-            <p class="sus-pillar-desc">We traverse the globe to source the rarest botanicals, partnering directly with local artisan communities to ensure fair wages and regenerative farming practices.</p>
+        <!-- Pillar 1 -->
+        <div class="sus-pillar-card">
+          <div class="sus-pillar-img-wrap">
+            <img src="{{ 'luxury_ingredients_1.png' | asset_url }}" alt="Ethical Sourcing" loading="lazy">
+            <div class="sus-pillar-number">01</div>
+          </div>
+          <div class="sus-pillar-info">
+            <h4>Ethical Sourcing</h4>
+            <p>We work directly with generational farmers and local artisans across the globe, ensuring fair wages and protecting the fragile ecosystems where our rare botanicals thrive.</p>
           </div>
         </div>
 
-        <div class="sus-pillar-item" data-gsap="fade-up" data-delay="0.2">
-          <div class="sus-pillar-number">02</div>
-          <div class="sus-pillar-content">
-            <h3 class="sus-pillar-heading">Eternal Packaging</h3>
-            <p class="sus-pillar-desc">Our iconic flacons are crafted from 100% recycled glass and designed as timeless keepsakes. We have eliminated single-use plastics from our entire supply chain.</p>
+        <!-- Pillar 2 -->
+        <div class="sus-pillar-card">
+          <div class="sus-pillar-img-wrap">
+            <img src="{{ 'luxury_perfume_bottle.png' | asset_url }}" alt="Timeless Vessels" loading="lazy">
+            <div class="sus-pillar-number">02</div>
+          </div>
+          <div class="sus-pillar-info">
+            <h4>Timeless Vessels</h4>
+            <p>Our heavy glass flacons are masterpieces designed to last forever. Created with 100% recyclable glass and zero single-use plastics in our secondary packaging.</p>
           </div>
         </div>
 
-        <div class="sus-pillar-item" data-gsap="fade-up" data-delay="0.4">
-          <div class="sus-pillar-number">03</div>
-          <div class="sus-pillar-content">
-            <h3 class="sus-pillar-heading">Carbon Negative</h3>
-            <p class="sus-pillar-desc">Beyond carbon neutrality, we invest heavily in certified afforestation projects, drawing more carbon from the atmosphere than our operations emit.</p>
+        <!-- Pillar 3 -->
+        <div class="sus-pillar-card">
+          <div class="sus-pillar-img-wrap">
+            <img src="{{ 'velvet_amber_campaign.png' | asset_url }}" alt="Carbon Negative" loading="lazy">
+            <div class="sus-pillar-number">03</div>
+          </div>
+          <div class="sus-pillar-info">
+            <h4>Carbon Negative</h4>
+            <p>We don't just offset; we restore. Through aggressive afforestation initiatives and renewable energy transitions, we draw more carbon than we emit.</p>
           </div>
         </div>
 
       </div>
-
-      <!-- Right side: Sticky Image -->
-      <div class="sus-pillars-visual" data-gsap="fade-in">
-        <div class="sus-sticky-wrapper">
-          <img src="{{ 'luxury_perfume_lifestyle.png' | asset_url }}" alt="Sustainable Luxury" class="sus-visual-img" loading="lazy">
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- Full Bleed Image Break -->
-  <section class="sus-image-break">
-    <img src="{{ 'velvet_amber_campaign.png' | asset_url }}" alt="Campaign" class="sus-parallax-img" loading="lazy">
-  </section>
-
-  <!-- Final Vision Section -->
-  <section class="sus-vision premium-container editorial-spacing">
-    <div class="sus-vision-content" data-gsap="fade-up">
-      <h2 class="sus-vision-title">A Legacy for Tomorrow</h2>
-      <p class="sus-vision-text">
-        By protecting the delicate environments from which we draw our inspiration, we ensure our creations can be enjoyed for generations to come. Join us in cultivating a more beautiful, sustainable future.
-      </p>
-      <a href="/?view=about" class="sus-btn">Discover Our Story</a>
+  <!-- 4. Grand Statement (Glassmorphism Parallax) -->
+  <section class="sus-statement-ultra">
+    <img src="{{ 'luxury_artisan_1.png' | asset_url }}" alt="Artisan Craftsmanship" class="sus-statement-img" data-gsap="parallax" loading="lazy">
+    <div class="sus-statement-box" data-gsap="fade-up">
+      <p>"Elegance is the only beauty that never fades, and sustainability is the only legacy worth leaving."</p>
+      <a href="{{ routes.all_products_collection_url }}" class="sus-btn-ultra">Experience RISE</a>
     </div>
   </section>
+
 </div>
 
 <style>
-  /* Base Overrides */
-  .sustainability-v2 {
-    background: var(--color-luxury-black);
-    color: var(--color-ivory);
-    overflow: hidden;
+  /* Variables & Base */
+  :root {
+    --sus-gold: #c5a059;
+    --sus-champagne: #e5d5b8;
+    --sus-dark: #050505;
+    --sus-light: #f8f5f0;
+  }
+  .sus-ultra {
+    background: var(--sus-dark);
+    color: var(--sus-light);
     font-family: var(--font-sans);
+    overflow-x: hidden;
   }
   
-  /* Hero Section */
-  .sus-hero {
+  /* 1. Hero Section */
+  .sus-hero-ultra {
     position: relative;
     height: 100vh;
     min-height: 800px;
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
   }
-  .sus-hero-bg {
+  .sus-hero-bg-ultra {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
   }
-  .sus-hero-img {
+  .sus-hero-bg-ultra img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.1); /* for parallax effect */
+    transform: scale(1.15); /* Starting scale for GSAP */
   }
-  .sus-hero-overlay {
+  .sus-hero-overlay-ultra {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.4) 50%, rgba(5,5,5,0.8) 100%);
+    background: linear-gradient(180deg, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.3) 50%, rgba(5,5,5,1) 100%);
   }
-  .sus-hero-content {
+  .sus-hero-content-ultra {
     position: relative;
     z-index: 10;
-    padding-top: 10vh;
+    text-align: center;
+    width: 100%;
+    padding: 0 var(--spacing-md);
   }
-  .sus-kicker {
-    font-family: var(--font-sans);
+  .sus-hero-kicker {
     font-size: 0.9rem;
-    letter-spacing: 0.3em;
-    color: var(--color-soft-gold);
-    margin-bottom: var(--spacing-sm);
-    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: var(--sus-champagne);
+    margin-bottom: 2rem;
+    font-weight: 300;
   }
-  .sus-title {
+  .sus-hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(4rem, 8vw, 9rem);
-    line-height: 0.95;
-    color: var(--color-ivory);
+    font-size: clamp(4rem, 12vw, 12rem);
+    line-height: 0.85;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .sus-scroll-indicator {
+  /* Outline effect on the first line, solid on the second */
+  .sus-hero-title span:first-child {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(229, 213, 184, 0.6);
+    margin-left: -10vw;
+  }
+  .sus-hero-title span:last-child {
+    color: var(--sus-light);
+    margin-right: -10vw;
+    text-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  
+  .sus-scroll-wrap {
     position: absolute;
-    bottom: 40px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -149,176 +178,231 @@
     gap: 15px;
     z-index: 10;
   }
-  .sus-scroll-indicator span {
+  .sus-scroll-text {
     font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-champagne);
+    letter-spacing: 0.3em;
+    color: var(--sus-champagne);
+    opacity: 0.7;
   }
-  .sus-scroll-line {
+  .sus-scroll-indicator {
     width: 1px;
-    height: 60px;
-    background: rgba(212, 175, 55, 0.3);
+    height: 80px;
+    background: rgba(229, 213, 184, 0.2);
     position: relative;
     overflow: hidden;
   }
-  .sus-scroll-line::after {
+  .sus-scroll-indicator::after {
     content: '';
     position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--color-soft-gold);
-    animation: scrollDrop 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+    top: -100%; left: 0; width: 100%; height: 100%;
+    background: var(--sus-champagne);
+    animation: dropScroll 2.5s infinite cubic-bezier(0.65, 0, 0.35, 1);
   }
-  @keyframes scrollDrop {
+  @keyframes dropScroll {
     0% { top: -100%; }
     100% { top: 100%; }
   }
 
-  /* Statement Section */
-  .sus-statement {
-    padding-top: var(--spacing-xxl);
-    padding-bottom: var(--spacing-xxl);
-    text-align: center;
+  /* 2. Philosophy */
+  .sus-philosophy {
+    padding: var(--spacing-xxl) var(--spacing-md);
   }
-  .sus-statement-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .sus-statement-text {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    line-height: 1.3;
-    color: var(--color-champagne);
-    font-weight: 300;
-  }
-
-  /* Pillars Section */
-  .sus-pillars-section {
-    padding: var(--spacing-xl) 0 var(--spacing-xxl);
-  }
-  .sus-pillars-grid {
+  .sus-phil-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
-    align-items: start;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
   }
-  .sus-pillars-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    padding-right: var(--spacing-lg);
-  }
-  .sus-pillar-item {
-    display: flex;
-    gap: var(--spacing-md);
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
-    padding-top: var(--spacing-md);
-  }
-  .sus-pillar-number {
+  .sus-phil-heading {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
-    color: var(--color-soft-gold);
-    line-height: 1;
-  }
-  .sus-pillar-heading {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-ivory);
-  }
-  .sus-pillar-desc {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: rgba(239, 232, 223, 0.8);
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.1;
+    color: var(--sus-champagne);
     font-weight: 300;
   }
-  .sus-pillars-visual {
-    position: sticky;
-    top: 120px;
-    height: 80vh;
-    border-radius: 12px;
+  .sus-phil-text {
+    font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+    line-height: 1.8;
+    color: rgba(248, 245, 240, 0.8);
+    font-weight: 300;
+  }
+
+  /* 3. Horizontal Scroll Pillars */
+  .sus-pillars-ultra {
+    background: #0a0a0a;
+    padding: var(--spacing-xxl) 0;
     overflow: hidden;
   }
-  .sus-visual-img {
+  .sus-pillars-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+  }
+  .sus-pillars-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--sus-gold);
+    text-transform: uppercase;
+  }
+  .sus-pillars-container {
+    width: 100%;
+    /* GSAP will pin this container and translate the track */
+  }
+  .sus-pillars-track {
+    display: flex;
+    gap: 4vw;
+    padding: 0 10vw;
+    width: fit-content;
+  }
+  .sus-pillar-card {
+    width: 45vw;
+    min-width: 350px;
+    max-width: 600px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  .sus-pillar-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .sus-pillar-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.85);
+    transition: transform 1.5s ease;
   }
-
-  /* Full Bleed Image Break */
-  .sus-image-break {
-    width: 100%;
-    height: 70vh;
-    overflow: hidden;
-    position: relative;
+  .sus-pillar-card:hover .sus-pillar-img-wrap img {
+    transform: scale(1.05);
   }
-  .sus-parallax-img {
-    width: 100%;
-    height: 120%;
-    object-fit: cover;
-    object-position: center 20%;
-  }
-
-  /* Vision Section */
-  .sus-vision {
-    text-align: center;
-    padding: var(--spacing-xxl) 0;
-  }
-  .sus-vision-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .sus-vision-title {
+  .sus-pillar-number {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 5vw, 4.5rem);
-    color: var(--color-champagne);
-    margin-bottom: var(--spacing-md);
+    font-size: 3rem;
+    color: var(--sus-light);
+    line-height: 1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
   }
-  .sus-vision-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: rgba(239, 232, 223, 0.8);
-    margin-bottom: var(--spacing-xl);
+  .sus-pillar-info h4 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--sus-champagne);
+    margin-bottom: 1rem;
     font-weight: 300;
   }
-  .sus-btn {
-    display: inline-block;
-    padding: 15px 40px;
-    border: 1px solid var(--color-soft-gold);
-    color: var(--color-soft-gold);
-    text-decoration: none;
-    font-family: var(--font-sans);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    transition: all 0.4s ease;
-    background: transparent;
-  }
-  .sus-btn:hover {
-    background: var(--color-soft-gold);
-    color: var(--color-luxury-black);
+  .sus-pillar-info p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(248, 245, 240, 0.7);
+    font-weight: 300;
   }
 
-  /* Responsive Design */
+  /* 4. Grand Statement */
+  .sus-statement-ultra {
+    position: relative;
+    height: 100vh;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .sus-statement-img {
+    position: absolute;
+    top: -20%; left: 0; width: 100%; height: 140%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .sus-statement-ultra::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.4);
+    z-index: 1;
+  }
+  .sus-statement-box {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: rgba(10, 10, 10, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(229, 213, 184, 0.15);
+    border-radius: 2px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  }
+  .sus-statement-box p {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.3;
+    color: var(--sus-champagne);
+    margin-bottom: var(--spacing-lg);
+    font-style: italic;
+  }
+  .sus-btn-ultra {
+    display: inline-block;
+    padding: 18px 45px;
+    border: 1px solid var(--sus-gold);
+    color: var(--sus-gold);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.5s ease;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+  }
+  .sus-btn-ultra::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--sus-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+    z-index: -1;
+  }
+  .sus-btn-ultra:hover {
+    color: var(--sus-dark);
+  }
+  .sus-btn-ultra:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Responsive */
   @media screen and (max-width: 992px) {
-    .sus-pillars-grid {
+    .sus-hero-title span:first-child { margin-left: 0; }
+    .sus-hero-title span:last-child { margin-right: 0; }
+    
+    .sus-phil-grid {
       grid-template-columns: 1fr;
+      text-align: center;
+      gap: var(--spacing-md);
     }
-    .sus-pillars-list {
-      padding-right: 0;
+    
+    /* On mobile, disable horizontal scroll and stack them */
+    .sus-pillars-track {
+      flex-direction: column;
+      padding: 0 var(--spacing-md);
+      gap: var(--spacing-xl);
+      width: 100%;
     }
-    .sus-pillars-visual {
-      display: none; /* Hide visual on smaller screens to save space */
-    }
-    .sus-title {
-      font-size: 4.5rem;
-    }
-    .sus-statement-text {
-      font-size: 2rem;
+    .sus-pillar-card {
+      width: 100%;
+      min-width: 100%;
     }
   }
 </style>
@@ -327,41 +411,51 @@
   document.addEventListener('DOMContentLoaded', () => {
     if (window.gsap && window.ScrollTrigger) {
       
-      // Hero Image Parallax
-      gsap.to('.sus-hero-img', {
-        y: '20%',
+      // 1. Hero Animations
+      gsap.to('[data-gsap="hero-scale"] img', {
+        scale: 1,
+        duration: 3,
+        ease: 'power3.out'
+      });
+      
+      gsap.from('[data-gsap="title-reveal"] span', {
+        y: 100,
+        opacity: 0,
+        duration: 1.5,
+        stagger: 0.2,
+        ease: 'power4.out',
+        delay: 0.5
+      });
+      
+      gsap.from('.sus-hero-kicker, .sus-scroll-wrap', {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 1.5,
+        ease: 'power2.out'
+      });
+
+      // Hero Parallax on Scroll
+      gsap.to('[data-gsap="hero-scale"] img', {
+        yPercent: 20,
         ease: 'none',
         scrollTrigger: {
-          trigger: '.sus-hero',
+          trigger: '.sus-hero-ultra',
           start: 'top top',
           end: 'bottom top',
           scrub: true
         }
       });
 
-      // Full Bleed Image Break Parallax
-      gsap.to('.sus-parallax-img', {
-        y: '-20%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.sus-image-break',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true
-        }
-      });
-
-      // Reveal Animations (Fade Up)
-      const fadeUpEls = document.querySelectorAll('[data-gsap="fade-up"]');
-      fadeUpEls.forEach((el) => {
+      // 2. Philosophy Fade Ups
+      const fadeUps = document.querySelectorAll('[data-gsap="fade-up"]');
+      fadeUps.forEach(el => {
         const delay = parseFloat(el.getAttribute('data-delay')) || 0;
-        gsap.fromTo(el,
-          { y: 60, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            delay: delay,
+        gsap.fromTo(el, 
+          { y: 50, opacity: 0 },
+          { 
+            y: 0, opacity: 1, 
+            duration: 1.2, delay: delay, 
             ease: 'power3.out',
             scrollTrigger: {
               trigger: el,
@@ -372,37 +466,51 @@
         );
       });
 
-      // Reveal Animations (Fade In)
-      const fadeInEls = document.querySelectorAll('[data-gsap="fade-in"]');
-      fadeInEls.forEach((el) => {
-        const delay = parseFloat(el.getAttribute('data-delay')) || 0;
-        gsap.fromTo(el,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            duration: 1.5,
-            delay: delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse'
-            }
+      // 3. Horizontal Scroll for Pillars (Desktop Only)
+      if (window.innerWidth > 992) {
+        const track = document.querySelector('.sus-pillars-track');
+        const container = document.querySelector('.sus-pillars-ultra');
+        
+        // Calculate how far to scroll
+        // total width of track minus viewport width + some padding
+        const scrollWidth = track.scrollWidth - window.innerWidth + (window.innerWidth * 0.1);
+        
+        gsap.to(track, {
+          x: -scrollWidth,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            end: () => `+=${scrollWidth}`,
+            pin: true,
+            scrub: 1, // smooth scrubbing
+            invalidateOnRefresh: true
           }
-        );
-      });
+        });
+      }
 
+      // 4. Statement Image Parallax
+      gsap.to('[data-gsap="parallax"]', {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.sus-statement-ultra',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
     }
   });
 </script>
 
 {% schema %}
 {
-  "name": "Premium Sustainability",
+  "name": "Ultra Sustainability",
   "settings": [],
   "presets": [
     {
-      "name": "Premium Sustainability"
+      "name": "Ultra Sustainability"
     }
   ]
 }

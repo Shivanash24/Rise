@@ -13,7 +13,15 @@
       {% endif %}
       <div class="contact-info-card">
         <h3>{{ section.settings.card_title | default: 'CLIENT CONCIERGE' }}</h3>
-        <p>{{ section.settings.card_subtitle | default: 'Available Monday to Friday, 9:00 AM to 6:00 PM (EST).' }}</p>
+        <p>
+          {{ section.settings.card_subtitle | default: 'Available Monday to Friday, 9:00 AM to 6:00 PM (EST).' }}<br><br>
+          <span style="font-size: 0.85rem; color: var(--color-soft-gold); font-style: italic;">
+            (Average Response Time<br>Within 24 business hours.)
+          </span>
+        </p>
+        <div style="margin-bottom: 2rem;">
+          <a href="/?view=documentation" style="color: var(--color-champagne); text-decoration: none; border-bottom: 1px solid var(--color-champagne); padding-bottom: 2px; font-family: var(--font-sans); font-size: 0.95rem; letter-spacing: 0.05em; transition: color 0.3s ease;">Theme Documentation →</a>
+        </div>
         
         <div class="info-block">
           <h4>{{ section.settings.email_label | default: 'EMAIL' }}</h4>

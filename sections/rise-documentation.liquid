@@ -1,0 +1,217 @@
+<div class="rise-docs-page">
+  <div class="docs-hero">
+    <h1>PERFIORA THEME DOCUMENTATION</h1>
+    <p>A comprehensive guide for merchants to harness the full potential of our luxury design system.</p>
+  </div>
+
+  <div class="docs-content">
+    <div class="docs-section">
+      <h2 class="section-title">1. What's Included</h2>
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="card-icon">✧</div>
+          <h3>Premium Templates</h3>
+          <p>Over 10 meticulously designed pages including Homepage, Product Details, Our Story, Sustainability, FAQ, Contact, and more. All engineered for a high-end luxury aesthetic.</p>
+        </div>
+        <div class="doc-card">
+          <div class="card-icon">✦</div>
+          <h3>Advanced Animations</h3>
+          <p>Integrated GSAP scroll triggers, glassmorphism hover effects, and ambient glow particles that make the store feel alive without compromising performance.</p>
+        </div>
+        <div class="doc-card">
+          <div class="card-icon">✧</div>
+          <h3>Global Design System</h3>
+          <p>Centralized CSS variables for colors, typography, and spacing under the "Perfiora" preset, ensuring brand consistency across every pixel of your storefront.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="docs-section">
+      <h2 class="section-title">2. How to Use the Theme</h2>
+      <div class="instruction-block">
+        <h3>Navigating the Shopify Editor</h3>
+        <p>The Perfiora theme is fully integrated with Shopify's Online Store 2.0. To start building:</p>
+        <ul>
+          <li>Go to <strong>Online Store > Themes > Customize</strong>.</li>
+          <li>Select any page from the top dropdown (e.g., "Pages > about" or "Pages > contact").</li>
+          <li>Click on sections in the left sidebar to change headings, upload custom images, and edit text blocks.</li>
+          <li>For global changes like primary colors or typography, click the <strong>Theme Settings (gear icon)</strong> on the left panel.</li>
+        </ul>
+      </div>
+
+      <div class="instruction-block">
+        <h3>Best Practices for Imagery</h3>
+        <p>To maximize the luxurious feel of Perfiora, we highly recommend:</p>
+        <ul>
+          <li>Using <strong>transparent PNGs</strong> for product shots. This allows the background ambient glow and particles to shine through.</li>
+          <li>Utilizing high-resolution, moody, or dark-toned lifestyle photography for banners and collages to seamlessly blend with the dark background.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.rise-docs-page {
+  background: var(--color-luxury-black, #0a0a0a);
+  color: var(--color-ivory, #EFE8DF);
+  padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xxl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.docs-hero {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl, 4rem);
+  position: relative;
+}
+
+.docs-hero::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.docs-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  letter-spacing: 0.1em;
+  color: var(--color-champagne, #D4AF37);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.docs-hero p {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: rgba(239, 232, 223, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+.docs-section {
+  margin-bottom: 5rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-soft-gold, #C5A059);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.doc-card {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.doc-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: var(--color-champagne, #D4AF37);
+  margin-bottom: 1rem;
+}
+
+.doc-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-ivory, #EFE8DF);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.doc-card p {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(239, 232, 223, 0.7);
+}
+
+.instruction-block {
+  background: rgba(20, 20, 20, 0.4);
+  border-left: 3px solid var(--color-champagne, #D4AF37);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0 12px 12px 0;
+}
+
+.instruction-block h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-ivory, #EFE8DF);
+  margin-bottom: 1rem;
+}
+
+.instruction-block p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(239, 232, 223, 0.8);
+  margin-bottom: 1rem;
+}
+
+.instruction-block ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  color: rgba(239, 232, 223, 0.8);
+  font-family: var(--font-sans);
+  line-height: 1.8;
+}
+
+.instruction-block ul li strong {
+  color: var(--color-champagne, #D4AF37);
+  font-weight: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .rise-docs-page {
+    padding: calc(var(--spacing-xl) + 20px) 1.5rem var(--spacing-xl);
+  }
+  .docs-hero h1 {
+    font-size: 2.2rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Perfiora Documentation",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Perfiora Documentation"
+    }
+  ]
+}
+{% endschema %}

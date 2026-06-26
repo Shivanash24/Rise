@@ -34,7 +34,7 @@ function initHero3D() {
     const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
     const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
 
-    // Apply rotation based on mouse position (max 15 degrees)
+    // Apply rotation based on mouse position (max 15 degrees)    
     gsap.to(inner, {
       rotationY: x * 15,
       rotationX: -y * 15,

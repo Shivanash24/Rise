@@ -22,7 +22,7 @@
       <div class="ornament-diamond"></div>
       <div class="ornament-line"></div>
     </div>
-    <h1 class="luxury-collections-title">{{ section.settings.title }}</h1>
+    <h1 class="luxury-collections-title">{{ section.settings.title | default: 'Products' }}</h1>
     <p class="luxury-collections-subtitle">EXPLORE OUR SIGNATURE FRAGRANCES</p>
     <div class="luxury-header-ornament">
       <div class="ornament-line"></div>
@@ -82,8 +82,8 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "label": "t:sections.main-list-collections.settings.title.label",
-      "default": "t:sections.main-list-collections.settings.title.default"
+      "label": "Heading",
+      "default": "Products"
     },
     {
       "type": "select",
